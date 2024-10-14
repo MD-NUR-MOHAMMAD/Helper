@@ -1,0 +1,22 @@
+Environment setup:
+
+2 way
+a) CDN [ control the part of HTML]
+b) CLI (Webpack) [control Entire Web page event routing]
+
+cdn link:     
+title ar niche. ar moddome ami vue3 k cdn theke pachi 
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
+vite diye installation kora jay
+--------------------------------------------------------------------------------------
+code:
+object ar Property golo html value diye access korte parbo.
+app[var].mount('#app')[#app holo html div ar id]
+
+
+
+
+css dekhai ni
+

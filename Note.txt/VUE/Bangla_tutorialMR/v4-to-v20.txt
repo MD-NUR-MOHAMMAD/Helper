@@ -1,0 +1,181 @@
+video4 : [data&attributeBinding]
+
+string interpulation:
+{{string interpulation}} ata string interpulation
+<div id="app">
+   <h3>Welcome to {{tutorialinfo.name}} for fresher</h3>
+</div>
+
+
+attributebind:
+<a v-bind:href="tutorialinfo.github">Github</a>
+<a :href="tutorialinfo.github">Github</a>
+
+v-bind / :
+
+---------------------------------------------------------------------------------------------------------------------------
+video5:
+
+v-on: / @
+---------------------------------------------------------------------------------------------------------------------------
+video6:
+
+
+
+---------------------------------------------------------------------------------------------------------------------------
+video7 [event modifiers]:
+
+
+form ar action ar value server a backend submit hoy. action na dile ja file chilam sei file submit hobe.
+
+ @submit.prevent [not submit prevent defult]
+@keyup.enter [input a value diye enter korte hobe]
+@click.right [right button click corthe hobe]
+@click.left [left button click corthe hobe]
+view a click kolorle duita event call hoy.    e.stopPropagation(); [js system sudo ak bar call hobe] . @click.stop="handleviewClick" [one time work parant k call korbe na]
+--------------------------------------------------------------------------------------------------------------------------
+video8 [two way data binding]:
+
+:value="name" @input="handleInput"
+handleInput(e){
+      this.name = e.target.value;
+    },
+
+ uporer sob bad only v-model[ event & method binding aksathe]
+ v-model.number [methods ar sob value se number a dibe nahole se string mone kore 10+ korle se 10 string dibe]
+ trim ar kaj nije korte hobe
+
+--------------------------------------------------------------------------------------------------------------------------
+video9 [Class binding]:
+
+    <button :class="{active: activeClass == 'red'}" @click="setClass('red')">Red</button> [bind class active ar por bolian dite hoy mane true or false]
+   <button 
+    class="button"
+    :class="{active: activeClass == 'red', bold: true}" @click="setClass('red')"  [bind with object/{}]
+    >
+    Red
+  </button>
+   <div :class="activeClass">[attribute binding]
+
+    </div>
+--------------------------------------------------------------------------------------------------------------------------
+
+video10[Style binding]:
+
+v-model [value set and get]
+--------------------------------------------------------------------------------------------------------------------------
+video11 [List rendering]:
+
+array rendering means dekhanu
+v-for loop
+akhane {{skills}} loop ar bihire pabe na
+index number add and click loop a add korte pari
+splice[click korle chole jabe] in use removeskill
+array ar modde object list
+dynamic kaj korchi
+for id same a input click hoy
+---------------------------------------------------------------------------------------------------------------------------
+video12 [Uses fo key in loops]:
+
+add input field under skill name for review 
+@click.stop
+            <input type="text" placeholder="remark" @click.stop />
+
+
+
+key dite hoy loop line unique value ar upor
+<li v-for="(skill, i) in skills" @click="removeSkill(i)" :key="skill.name">
+
+i/intiger use kora tik na
+---------------------------------------------------------------------------------------------------------------------------
+video13 [List rendering of object and numbers]:
+
+<tr> a loop chalyche
+<tr v-for="(value, key, index) in aboutMe">
+
+number a loop chalile variable dorkar nai.
+       <div>
+        <p v-for="i in 15">{{i}}</p>
+      </div>
+---------------------------------------------------------------------------------------------------------------------------
+video14 [Conditional rendering]
+
+v-if/ v-show [same work v-if dom a show hide hoy v-show all time show DOM display:none kore]
+
+v-if 
+v-else-if
+v-else [ v-show is not accepted]
+--------------------------------------------------------------------------------------------------------------------------
+video15 [Computed Properties]
+
+Computed Properties hole 1ta kore method
+call a () dite hoy na  ata Property hisabe use hoy.
+don't use argument : (4)
+help to app fast
+, jonno error dey ha ha ha ..............
+
+total Count:
+method/ computed a
+totalCount() {
+      console.log(this.skills.length);// call method
+      return this.skills.length;
+    }
+
+html a:
+      <h3>Total : {{ totalCount() }}</h3>
+
+.filter()  [js callback function, ata obosoi return hobe]
+show korte loop lage 
+<li v-for="(skill, i) in experienceSkills" [method a loop chalichi]
+ output 2 jaygay remove hoy
+--------------------------------------------------------------------------------------------------------------------------
+video16 [Watcher]
+Watcher ar maddome data propertite kichu method use korte pari. Create app data property ar baire watcher dite hoy.
+isNaN [js a number kina check kore] oldvalue
+
+data() {
+    return {
+      mobile: "",
+      name: {
+        firstName: "",
+        lastName: "",
+      }
+    };
+  },
+
+
+
+
+name.firstName [nested property] ki watch korbo ta watch a bolbo.
+
+If you want to watch changes to the nested properties, you need to use the `deep: true` option.
+deep: true [ ]
+
+chaile array k watch korte pari.
+
+computed property o watch korte pari.
+---------------------------------------------------------------------------------------------------------------------------
+video17 [computed property vs Method vs 
+Watcher]
+
+Computed = Calculation
+Method = event bind / argoment pass
+Watcher = change direction , data Property chane, validation
+--------------------------------------------------------------------------------------------------------------------------
+video18&19 project
+--------------------------------------------------------------------------------------------------------------------------
+video20 [Multiple apps & Template]
+
+webpage part handle ar jonno CDN.
+Full webpage k use korar jonno Cli.
+
+Ak app ar data onno app a pabo na
+ Template diye output pete pari [ akadik data thakle back tik use korte hoy ``] template mount korte hoy string dite hoy
+
+mount ("#app") [mane dekabe khutay]
+
+
+
+
+
+

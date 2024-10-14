@@ -1,0 +1,65 @@
+1. Category & SubCategory
+2. User Has Many SubCategory & SubCategory Belongs To One Category
+3. make Category and SubCategory by CMD
+-----------------------------------------------------------------------------------------------------------
+php artisan make:model Category -mcrsf
+php artisan make:model SubCategory -mcrsf
+------------------------------------------------------------------------------------------------------------------
+4. database\migrations\2024_04_30_060128_create_categories_table.php ----------------
+Schema::create('categories', function (Blueprint $table) {
+  $table->id();
+  $table->string('name');
+  $table->string('slug');
+  $table->text('description')->nullable();
+  $table->string('image')->nullable();
+  $table->boolean('status')->default(true);
+  $table->timestamps();
+});
+----------------------------------------------------------------------------------------------------------------------
+5. database\migrations\2024_05_05_061332_create_sub_categories_table.php --------------
+Schema::create('sub_categories', function (Blueprint $table) {
+  $table->id();
+  $table->bigInteger('category_id')->unsigned()->nullable();
+  $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+  $table->string('name');
+  $table->string('slug');
+  $table->string('image')->nullable();
+  $table->boolean('status')->default(true);
+  $table->softDeletes();
+  $table->timestamps();
+});
+----------------------------------------------------------------------------------------------------------------
+6. app\Models\Category.php ---------------------------------------------------------------------------
+<?php
+use Illuminate\Database\Eloquent\Relations\HasMany;
+class Category extends Model {
+  use HasFactory;
+  protected $fillable = [
+    'name',
+    'slug',
+    'description',
+    'image',
+    'status',
+  ];
+  public function subcategories(): HasMany {
+    return $this->hasMany(SubCategory::class);
+  }
+}
+?>
+---------------------------------------------------------------------------------------------------------------------
+7. app\Models\SubCategory.php ---------------------------------------------------------------------------
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+class SubCategory extends Model {
+  use HasFactory;
+  protected $fillable = [
+    'category_id',
+    'name',
+    'slug',        
+    'image',
+    'status',
+  ]; 
+  public function category(): BelongsTo {
+    return $this->belongsTo(Category::class);
+  }
+}
+-------------------------------------------------------------------------------------------------------------------

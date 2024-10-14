@@ -1,0 +1,12 @@
+class 2:
+sir normally open 3 file "index.html,main.js,seed.js"
+
+	loop:
+	v-for = "item in items"
+
+	<article v-for="submission in submissions" class="media">
+	<!-- Rest of the submission template -->
+	</article>
+ 
+	
+	

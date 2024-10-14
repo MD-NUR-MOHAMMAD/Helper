@@ -1,0 +1,11 @@
+
+	PHP:
+	------
+ set php in env [ environment variable]
+path: xampp/php url copy and env new a set
+	
+	composer:	
+	------------
+composer install: 
+search: composer download > composer > Composer-Setup.exe [start download]
+ setup: run as adminstration > all next next finish. [see the php which is setup env]

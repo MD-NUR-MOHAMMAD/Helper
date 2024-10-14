@@ -1,0 +1,19 @@
+helper_funtion: Helpers
+url();  // (Uniform Resource Locator)
+
+laravel ui => User Interface (package)
+command:
+composer require laravel/ui
+php artisan ui bootstrap --auth (useing bootsrap and login registration add)
+
+
+
+
+
+
+
+
+NPM (Node package manager):
+install
+node -v (for node version)
+npm install && npm run dev (both run)

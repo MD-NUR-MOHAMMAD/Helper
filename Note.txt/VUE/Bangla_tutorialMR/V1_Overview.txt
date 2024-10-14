@@ -1,0 +1,32 @@
+Vue js is a Progressive JS framework. 
+JS is a programming language which is run after a page. JS can change content, handle events, validate form,....
+another framework React, Angular, Svelte etc.
+
+Benefit:
+Easy to get started.
+Lite weight and fast.
+More github stars.
+
+User:
+Apple
+Google
+IBM
+NASA
+Microsoft
+
+Leaning:
+Basic core concepts with cdn
+Behind the scene
+Conponents and some advanced concepts
+Vue Cli
+Working with forms
+Sending Http requests
+Routing wiht vue router
+Transition Animations
+State Management with vuex
+Vue JS Authentications
+Deploying vue app
+Composition API
+Mixins
+Migrations
+

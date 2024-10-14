@@ -1,0 +1,332 @@
+Vuex Store:
+Vuex হল একটি স্টেট ম্যানেজমেন্ট লাইব্রেরি যা আমাদের UI থেকে ডেটা পরিচালনা করতে এবং শেষ পর্যন্ত সঞ্চয় করতে দেয়।
+এটি কয়েকটি মিথস্ক্রিয়া সহ উপাদানগুলির জন্য দুর্দান্ত কাজ করে, তবে আমাদের যদি অনেকগুলি বিভিন্ন উপাদান থাকে তবে আমরা সমস্যায় পড়তে শুরু করি, যা একই ডেটার উপর নির্ভর করে, সম্ভবত একাধিক পৃষ্ঠা জুড়ে। সেই ডেটা পরিচালনার জন্য, আমরা Vuex ব্যবহার করতে পারি , যা আমাদের সমস্ত ডেটা কেন্দ্রীয়ভাবে পরিচালনা করে, যাতে আমরা এটিকে সহজেই ব্যবহার করতে এবং অ্যাক্সেস করতে পারি।
+
+*state() - এখানেই আমরা আমাদের ডেটা সংরক্ষণ করব (রাষ্ট্র নামেও পরিচিত)। আমাদের ডেটার যেকোনো আপডেট বা পরিবর্তন এই state()ফাংশনের মধ্যে প্রতিফলিত হবে ।
+*getters - আপনি যা মনে করেন এটি ঠিক তাই করে - এটি আমাদের স্টোর থেকে ডেটা পেতে দেয়।
+*mutation- এই ফাংশনগুলি আমরা আমাদের ডেটা আপডেট করতে ব্যবহার করব। আমরা ইচ্ছামত রাষ্ট্রীয় ডেটা আপডেট এবং পরিবর্তন করতে এর মধ্যে পদ্ধতি/method যোগ করতে পারি।
+mutationপদ্ধতি তৈরি করা। এই পদ্ধতি/method যা আমাদের state()স্টোরের মধ্যে ডেটা পরিবর্তন করতে দেয়।
+*actions- [event] আপনি যদি একটি প্রতিশ্রুতি ফেরত দিতে চান, বা আপনার মিউটেশনে একটি অ্যাসিঙ্ক্রোনাস ইভেন্ট ব্যবহার করতে চান, আপনি মিউটেশন ব্যবহার করতে পারবেন না। পরিবর্তে, কর্ম /action ব্যবহার করুন. ক্রিয়াগুলি মূলত মিউটেশনের মতোই, যাতে তারা আমাদের রাষ্ট্রীয় স্টোরকে পরিবর্তন করতে দেয়, কিন্তু তারা একটি প্রতিশ্রুতি ফিরিয়ে দেয় এবং অ্যাসিঙ্ক্রোনাস হতে পারে। 
+
+const store = createStore({
+    state () {
+        return {
+            users: [
+                { id: '123-123-123', name: 'John Doe', email: 'johndoe@fjolt.com' }
+            ]
+        }
+    },
+    getters: {
+        users (state) {
+            // state variable contains our state data
+            return state.users;
+        }
+    }
+    mutations: {
+
+    }
+});
+
+আমাদের মধ্যে তথ্য state()পদ্ধতি মাধ্যমে অ্যাক্সেসযোগ্য getters. আমি একটি গেটার ফাংশন তৈরি করেছি, যাকে বলা হয় users। যখন এটি বলা হয়, আমরা ভেরিয়েবলের মাধ্যমে ব্যবহারকারী তালিকা অ্যাক্সেস করি state, যা আমাদের স্টেট স্টোরের সমস্ত ডেটা ধারণ করে। যেমন, আমরা যখন ফিরে আসি state.users, তখন আমরা আমাদের স্টেট স্টোরের সমস্ত ব্যবহারকারীকে পাই।
+Vuex এর সাথে ডেটা পরিবর্তন বা পরিবর্তন করা:
+mutations: {
+    addUser(state, newUser) {
+        if(newUser.id !== undefined && typeof newUser.name == 'string' && typeof newUser.email == 'string') {
+            state.users.push({
+                id: newUser.id,
+                name: newUser.name,
+                email: newUser.email
+            })
+        }
+    }
+}
+অ্যাকশন সম্পত্তির মধ্যে আমাদের Vuex স্টোরে অ্যাকশন যোগ করা যেতে পারে:
+actions:
+const store = createStore({
+    state () {},
+    getters: {}
+    mutations: {},
+    actions: {
+        waitASecond: function() {
+            setTimeout(() => {
+                // Do something here with state()
+            }, 1000)
+        }
+    }
+});
+যেহেতু অ্যাকশনগুলি অ্যাসিঙ্ক্রোনাস হতে পারে, তাই আমরা API কলগুলির মতো সব ধরণের অ্যাসিঙ্ক্রোনাস ইভেন্টের পরিবর্তে সেগুলি ব্যবহার করতে পারি।
+কিভাবে Vuex মিউটেশন এবং গেটার ব্যবহার করবেন:
+এই ফাংশনগুলির মাধ্যমে অ্যাক্সেসযোগ্য this.$store।
+একটি সাধারণ উপাদান তৈরি করি যা আমাদের দোকানকে কাজে লাগায়। এটি যা করে তা হল স্টোরে একটি নতুন আইটেম যোগ করে এবং তারপরে কনসোল সমস্ত আইটেমকে স্ট্রিংফাইড JSON হিসাবে লগ করে:
+
+    <div id="new-user">
+        <input type="text" placeholder="Add a username.." id="username" ref="username">
+        <input type="text" placeholder="Add an email.." id="email" ref="email">
+        <input type="submit" id="submit-user" @click="newUser" value="Submit">
+    </div>
+
+
+<script>
+// I am using uuid for the ID for each user
+import { v4 as uuidv4 } from 'uuid'
+
+export default {
+    name: "NewUser",
+    methods: {
+        newUser: function() {
+            // We use "commit" to call mutations in Vuex
+            this.$store.commit('addUser', {
+                id: uuidv4(),
+                name: this.$refs.username.value,
+                email: this.$refs.email.value
+            })
+            // We can access getters via this.$store.getters
+            let allUsers = JSON.stringify(this.$store.getters.users);
+            console.log('New User Added!')
+            console.log(`All Users are here: ${allUsers}`);
+        }
+    }
+}
+</script>
+আমরা এর মাধ্যমে আমাদের দোকানে অনেক কিছু অ্যাক্সেস করতে পারি this.$store। যখন একজন ব্যবহারকারী আমাদের টেমপ্লেটে জমা ক্লিক করে, তখন আমরা আমাদের মিউটেশনকে বলি। আপনি লক্ষ্য করতে পারেন যে আমরা লিখেছি:
+
+this.$store.commit('addUser', {});
+কারণ আমরা সরাসরি Vuex এর সাথে মিউটেশনকে কল করি না। পরিবর্তে, আমরা commit()তাদের কল ব্যবহার. যেহেতু আগে থেকে আমাদের মিউটেশনকে বলা হয়েছিল addUser, আমরা সেই মিউটেশনটিকে ব্যবহার করে কল করতে পারি this.$store.commit('addUser', {}), যেখানে দ্বিতীয় অবজেক্টটি হল সেই ডেটা যা আমরা আমাদের মিউটেশনে পাঠাচ্ছি।
+
+তারপরে আমরা আমাদের মিউটেশনে আমাদের সমস্ত ডেটা জমা দিতে পারি, যা পরবর্তীতে Vuex-এ আমাদের স্টেট স্টোর আপডেট করে। এখন আমরা সহজেই আমাদের স্টেট স্টোরে ব্যবহারকারীদের যোগ করতে পারি এবং আমাদের Vue অ্যাপ্লিকেশনের যেকোনো উপাদান থেকে এটি অ্যাক্সেসযোগ্য।
+অ্যাকশন ব্যবহার করে:
+দ্রষ্টব্য : আমরা অ্যাসিঙ্ক্রোনাস ইভেন্টের জন্য আগে ক্রিয়া উল্লেখ করেছি। আপনি মিউটেশনের মতো একইভাবে অ্যাকশন ব্যবহার করতে পারেন, শুধুমাত্র আপনাকে কল করতে হবে this.$store.dispatch('actonName', {}), যেখানে প্রথম আর্গুমেন্টটি হল যে অ্যাকশনটি আপনি কল করতে চান, এবং দ্বিতীয়টি হল যে ডেটা আপনি এতে পাঠাচ্ছেন।
+
+Getters ব্যবহার করে
+আমরা আমাদের গেটার ব্যবহার করেছি কনসোল লগ লগ করার জন্য যখনই একজন যোগ করা হয়। Vuex থেকে যেকোনো গেটার অ্যাক্সেস করতে, আপনাকে শুধু ব্যবহার করতে হবে this.$store.getters। সমস্ত গেটার সেই বস্তুতে সংরক্ষণ করা হবে, তাই আগে থেকে this.$store.getters.usersআমাদের users()গেটার উল্লেখ করে।
+
+
+স্থানীয় স্টোরেজে Vuex ডেটা কীভাবে সংরক্ষণ করবেন:
+
+আপনি যখন পৃষ্ঠাটি রিফ্রেশ করবেন, সমস্ত ডেটা অদৃশ্য হয়ে যাবে। এটি সমাধান করার একটি উপায়, ডাটাবেসে ডেটা সংরক্ষণ করা। আরেকটি, যা নিশ্চিত করবে যে অ্যাপ্লিকেশনটি অফলাইনেও কাজ করবে, তা হল এটি ব্যবহার করে স্থানীয়ভাবে সংরক্ষণ করা localStorage। যেমন, আমরা দেখব কীভাবে Vuex ডেটা লোকাল স্টোরেজে সংরক্ষণ করা যায়, যাতে এটি রিফ্রেশ করার পরেও বজায় থাকে। আপনি এটিকে একটি API সহ একটি ডাটাবেসে সংরক্ষণ করতে পারেন, যা ব্যবহারকারীরা লগ ইন করলে তাদের ডেটা অ্যাক্সেস করতে দেয়।
+
+প্রথম জিনিস আমাদের করতে হবে, subscribeআমাদের দোকানে পদ্ধতি ব্যবহার করা হয়. main.jsআপনি আপনার ফাইলের শেষে এটি যোগ করতে পারেন :
+
+
+store.subscribe((mutation, state) => {
+    // The code inside the curly brackets fires any time a mutation occurs.
+    // When a mutation occurs, we'll stringify our entire state object - which
+    // contains our todo list. We'll put it in the users localStorage, so that
+    // their data will persist even if they refresh the page.
+    localStorage.setItem('store', JSON.stringify(state));
+})
+
+
+subscribe()Vuex ফায়ারে যে কোনো সময় আমাদের দোকানে কোনো মিউটেশন ঘটবে - এর মানে যে কোনো সময় ডেটা যোগ করা বা সরানো হলে, সাবস্ক্রাইব ইভেন্টটি চালু হবে।
+
+localStorageএই সাবস্ক্রাইব ইভেন্টটি আমাদের বর্তমানে একটি আইটেম নামক রাজ্যের সমস্ত ডেটা সংরক্ষণ করবে store- যার অর্থ সমগ্র Vuex স্টোর ব্যবহারকারীর স্থানীয় কম্পিউটারে সংরক্ষণ করা হবে।
+
+Vue অ্যাপ্লিকেশনের সাথে স্থানীয় স্টোরেজ লিঙ্ক বজায় রাখা
+লোকালস্টোরেজে এটি সংরক্ষণ করা এক জিনিস, কিন্তু তারপরে এটি অ্যাপ্লিকেশনে দেখানো অন্য জিনিস। এর জন্য, আমাদের Vuex মিউটেশনগুলিতে একটি নতুন মিউটেশন তৈরি করতে হবে, যা state()আমাদের localStorageডেটা দিয়ে পুরো Vuex স্টোরকে প্রতিস্থাপন করবে, যদি এটি বিদ্যমান থাকে:
+
+mutations: {
+	loadStore() {
+        if(localStorage.getItem('store')) {
+            try {
+                this.replaceState(JSON.parse(localStorage.getItem('store')));
+            }
+            catch(e) {
+                console.log('Could not initialize store', e);
+            }
+        }
+    }
+    // ... other mutations
+}
+
+এই সমস্ত ফাংশনটি করে, localStorageআইটেমটি আছে কিনা তা পরীক্ষা করে, store, বিদ্যমান, এবং যদি এটি থাকে, আমরা ব্যবহার করি replaceState()- একটি ফাংশন যা পুরো স্টেট স্টোরকে যেকোনো কিছু দিয়ে প্রতিস্থাপন করে - এটিকে এই স্থানীয় স্টোরেজ ডেটা দিয়ে প্রতিস্থাপন করতে।
+
+যেহেতু আমরা এটি চালাতে চাই যখনই অ্যাপটি লোড হয় আমাদের এটিকে beforeCreate()আমাদের App.vueফাইলের হুকে যুক্ত করতে হবে।
+
+<script>
+    import { useStore } from 'vuex'
+    export default {
+        beforeCreate() {
+            // Get our store
+            const store = useStore()
+            // use store.commit to run any mutation. Below we are running the loadStore mutation
+            store.commit('loadStore');
+        }
+    }
+</script>
+
+আবার, মনে রাখবেন, আমরা ব্যবহার করে মিউটেশন বলি commit()। আমরা একটি ভেরিয়েবল তৈরি করেছি store, যেহেতু এটি হুকে সম্পূর্ণরূপে সেটআপ হবে না beforeCreate()। এটি ব্যবহার করে, আমরা loadStoreআমাদের স্থানীয় স্টোরেজ এবং Vuex স্টোর সিঙ্ক করে আমাদের মিউটেশন বন্ধ করে দিই।
+
+Vuex এর সাথে মডিউল ব্যবহার করা
+#
+যেহেতু উপরের আমাদের ডেটা স্টোরটি বেশ সহজ, তাই মডিউলগুলির সাথে এটিকে জটিল করার কোন বাস্তব প্রয়োজন নেই। কখনও কখনও, যদিও, আপনার কাছে আলাদা আলাদা ডেটা থাকবে যা আপনি মিশ্রিত করতে চান না। এই ধরণের জিনিসের জন্য, আমরা মডিউলগুলি ব্যবহার করতে পারি, যা মূলত আমাদের ডেটাকে বিভিন্ন নামস্থানে আলাদা করে যাতে আমরা পৃথকভাবে সেগুলি পেতে, পরিবর্তন করতে এবং সংরক্ষণ করতে পারি।
+
+মডিউলগুলি আগের মতই একই নীতি অনুসরণ করে, একমাত্র পার্থক্য হল আমরা একাধিক Vuex স্টোরকে সংজ্ঞায়িত করতে পারি:
+
+const userStore = {
+    namespaced: true,
+    state() {
+        return {
+            users: []
+        }
+    },
+    mutations: { // ... }
+    getters: { // ... }
+}
+const articleStore = {
+    namespaced: true,
+    state() {
+        return {
+            articles: []
+        }
+    },
+    mutations: { // ... }
+    getters: { // ... }
+}
+
+const store = createStore({
+    modules: {
+        users: userStore,
+        articles: articleStore
+    }
+})
+
+এখন আমাদের দুটি যৌক্তিকভাবে আলাদা ডেটা স্টোর রয়েছে। যদি আমরা অ্যাক্সেস করতে চাই userStores, তাহলে আমরা এটিকে খুঁজে পাব this.$store, কারণ এটি এখনও আমাদের সমস্ত সম্মিলিত স্টোর ধারণ করে।
+
+মডিউল গেটার অ্যাক্সেস করা হচ্ছে
+উপরের উদাহরণে, যেহেতু আমরা আমাদের ডেটা কিছুটা আলাদাভাবে সংরক্ষণ করছি, তাই this.$store.getters['user/users']আমাদের ব্যবহারকারীদের গেটার অ্যাক্সেস করতে ব্যবহার করতে হবে। যদি আমরা একটি গেটার কল করা থাকত usernames, আমরা একইভাবে এটি ব্যবহার করে অ্যাক্সেস করব this.$store.getters['users/usernames']।
+
+মডিউল মিউটেশন অ্যাক্সেস করা
+আগের মতই, আমরা এখনও সমস্ত মিউটেশনের মাধ্যমে অ্যাক্সেস করতে পারি this.$store.commit()- শুধুমাত্র, আমাদের নামস্থানও যোগ করতে হবে। addUserনামক একটি মিউটেশন ব্যবহার করতে userStore, আমরা লিখব this.$store.commit('users/addUser', {})।
+
+We’ve just defined all the pieces that make up a Vuex store
+	• state
+	• mutations
+	• actions
+	• getters
+State:
+------
+We’ll initialize them with empty arrays:
+
+vuex/note_taking/app-complete/main.js
+
+const state = {
+notes: [],
+timestamps: []
+}
+
+Mutations:
+------------
+
+There are two changes we’ll make to the state object
+
+• Push a new note to the state notes array
+• Push a new timestamp to the state timestamps array
+
+With this in mind, let’s create our two mutation function handlers as ADD_NOTE and ADD_TIMESTAMP
+within a mutations object.
+const mutations = {
+ADD_NOTE() {},
+ADD_TIMESTAMP() {},
+}
+
+vuex/note_taking/app-complete/main.js
+
+const mutations = {
+ADD_NOTE (state, payload) {
+	let newNote = payload;
+	state.notes.push(newNote);
+              },
+ADD_TIMESTAMP (state, payload) {
+	let newTimeStamp = payload;
+	state.timestamps.push(newTimeStamp);
+              }
+}
+
+Actions:
+----------
+Actions are functions that exist to call mutations.
+
+Let’s set up an actions object in the main.js file with an addNote and addTimestamp action.
+const actions = {
+   addNote() {},
+   addTimestamp() {},
+};
+
+vuex/note_taking/app-complete/main.js
+const actions = {
+     addNote (context, payload) {
+         context.commit('ADD_NOTE', payload);
+     },
+     addTimestamp (context, payload) {
+         context.commit('ADD_TIMESTAMP', payload);
+     }
+}
+
+Getters:
+---------
+Getters are to an application store what computed properties are to a component. 
+
+computed: {
+   getNotes () {
+     return this.$store.state.notes;
+   }
+}
+Our getters object will initially be laid out like this:
+const getters = {
+     getNotes() {},
+     getTimestamps() {},
+     getNoteCount() {},
+};
+
+const getters = {
+   getNotes(state) {
+     return state.notes;
+   },
+   getTimestamps(state) {
+     return state.timestamps;
+   },
+   getNoteCount(state) {
+     return state.notes.length;
+   },
+};
+
+
+vuex/note_taking/app-complete/main.js
+
+const getters = {
+   getNotes: state => state.notes,
+   getTimestamps: state => state.timestamps,
+   getNoteCount: state => state.notes.length
+}
+
+	Store:
+	-------
+With the state, mutations, actions, and getters all set-up, the final part of integrating Vuex into our
+application is creating and integrating the store.
+
+vuex/note_taking/app-complete/main.js
+
+const store = Vuex.createStore({
+     state,
+     mutations,
+     actions,
+     getters
+})
+
+For instance, the example above is exactly the same as calling it like so:
+>   const store = Vuex.createStore({
+>     state: state,
+>     mutations: mutations,
+>     actions: actions,
+>     getters: getters,
+>   });
+>
+
+This will look like the following:
+const app = Vue.createApp({
+   components: {
+     "input-component": inputComponent,
+   },
+});
+app.use(store);
+app.mount("#app");

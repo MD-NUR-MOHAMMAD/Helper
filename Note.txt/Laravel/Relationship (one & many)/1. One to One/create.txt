@@ -1,0 +1,21 @@
+Create:- Profile Table এ data insert করতে।
+routes ------------------------------------------------------------------------------------------
+Route::get('/profiletest/{id}', [UserController::class, 'profiletest']);
+---------------------------------------------------------------------------------------------------
+Controller --------------------------------------------------------------------------------------
+public function profiletest($id){
+  $duinumberuser = User::find($id);
+  $p = new Profile();
+  $p->first_name = fake()->firstName();
+  $p->last_name = fake()->lastName();
+  $p->phone = fake()->phoneNumber();
+  $p->address = fake()->address();
+  $p->photo = fake()->imageUrl(640, 480, 'animals', true);
+  $p->gender = fake()->randomElement(['male', 'female','other']);
+  $p->birthday = fake()->date();
+  $p->website = fake()->url();
+  $p->description = fake()->text(100);
+  $p->status = fake()->numberBetween(0, 1);
+  $result = $duinumberuser->profile()->save($p);
+}
+----------------------------------------------------------------------------------------------------

@@ -1,0 +1,2 @@
+Teacher has many Students
+Student has many Teacher

@@ -1,0 +1,14 @@
+carbon package: work for time 
+---------------
+
+nesbot.com
+Difference for Humans (how many time ago)
+Difference (I want 30 later it will date here)
+
+Time Zone:
+----------
+
+Php timezone
+https://www.php.net/manual/en/datetime.format.php (Datetime-manual-php)
+
+get(); (it is use for string format in data)

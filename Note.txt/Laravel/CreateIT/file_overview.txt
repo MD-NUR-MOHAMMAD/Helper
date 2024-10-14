@@ -1,0 +1,22 @@
+FILE OVERVIEW:
+
+Resource = View = HTML file
+
+Routes = Roads, Links
+
+.env = environment
+
+Vendor = symphony, package
+
+Pretty URL
+
+M = Model=>connection with DB
+V = View//html
+C = Controller//php
+
+index.html
+contact.html
+index.php
+contact.php
+
+index.html/php => index.blade.php

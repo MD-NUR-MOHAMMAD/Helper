@@ -1,0 +1,31 @@
+# many to many relationship এ তৃতীয় একটা টেবিল pivot table তৈরী করতে হয়।
+# pivot table তৈরী করতে হয় ASC আকারে (student_teacher)
+Models/Student -------------------------------------------------------------------------------------------------
+class Student extends Model{
+  public function teachers(){
+    return $this->belongsToMany(Teacher::class);
+  }
+}
+-----------------------------------------------------------------------------------------------------------------------
+Models/Teacher -------------------------------------------------------------------------------------------------
+class Teacher extends Model{
+  public function students(){
+    return $this->belongsToMany(Student::class);
+  }
+}
+-----------------------------------------------------------------------------------------------------------------------
+CMD (pivot table) -----------------------------------------------------------------------------------------------
+php artisan make:migration student_teacher_table --table=student_teacher
+-----------------------------------------------------------------------------------------------------------------------
+Migration/student_teacher_table ---------------------------------------------------------------------------
+public function up(): void{
+  Schema::create('student_teacher', function (Blueprint $table) {
+    $table->id();
+    $table->bigInteger('student_id')->unsigned()->nullable();
+    $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+    $table->bigInteger('teacher_id')->unsigned()->nullable();
+    $table->foreign('teacher_id')->references('id')->on('teaches')->onDelete('cascade');            
+    $table->timestamps();      
+  });
+}
+-----------------------------------------------------------------------------------------------------------------------

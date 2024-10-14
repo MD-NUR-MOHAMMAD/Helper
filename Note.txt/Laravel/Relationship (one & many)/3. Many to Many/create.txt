@@ -1,0 +1,25 @@
+view ------------------------------------------------------------------------------------------------------------------
+<form action="{{ route('products.store') }}" method="POST">
+    @csrf
+    <div class="form-group">
+        <label for="name">Product Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name">
+    </div>
+    <div class="form-group">
+        <label for="category">Select Category</label>
+        <select class="form-control" id="category" name="teacher_id[]">
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+-------------------------------------------------------------------------------------------------------------------------
+controller ------------------------------------------------------------------------------------------------------------
+$student = new Student;
+$student->name = "kamal";
+$student->roll = 32;
+$student->save();
+$student->teachers()->attach($request->teacher_id);
+-------------------------------------------------------------------------------------------------------------------------

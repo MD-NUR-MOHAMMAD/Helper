@@ -1,0 +1,45 @@
+.....GitHub.....
+
+Create a repository for ..... New a click.
+next complete it and cteate a click.
+Work into the file.
+Now complete this step:
+File Up for github
+1.git status + enter.
+2.git add . + enter.
+3.git commit-m "message here".
+4.git push.
+
+File download for github
+
+git clone ....Link here....
+git pull
+
+
+note: don't tuch git download file.
+
+	Branch:
+	----------
+We can create branch 2way one is github part (Grapical interface a )another is command line.
+ 
+Grapical interface:
+github theke branch create korle branch a move hoy. Copy all main to branch.
+brach a change korle we can see Compare & pull request atay click korle we can see merge option. If I want to merge we create a comment. (Create pull request) Open under Merge pull request. And marge confirm see this commit.
+
+Command:
+terminal or cmd open.
+Command this lines:
+	git branch  [check branches *means active]
+	git branch (BranchName) [create branch]
+	git checkout (BranchName) [* change branchname]
+	git branch -d (BranchName) [delete branch * is not delete]
+	git checkout -b "branchName" [2 work branch create and active]
+	git status [ofcourse this branch is active]
+	git add . or file name
+	git commit -m "message here"
+	git push -u origin (BranchName)
+
+	git log --oneline   [commit check see]
+
+I want pull request so ckick pull requests  > New pull request > kuta theke kutay patabo > create pull request > comment > Create pull request> pull requests 1> request a click >merge pull request > pull request merge succesfully> check commit.
+	

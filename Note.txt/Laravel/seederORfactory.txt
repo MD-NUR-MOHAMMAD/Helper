@@ -1,0 +1,2 @@
+seeder or factory :
+They are use for dummy data. seeder can give a data.Factory gives a organize data(such as (6) means 6 word).

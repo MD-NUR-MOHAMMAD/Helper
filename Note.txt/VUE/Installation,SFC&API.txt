@@ -1,0 +1,114 @@
+  Installation:
+  ------------
+
+ 	 npm create vue@latest
+
+  	✔ Project name: … <your-project-name>
+  	✔ Add TypeScript? … No / Yes
+  	✔ Add JSX Support? … No / Yes
+  	✔ Add Vue Router for Single Page Application development? … No / Yes [Yes for home and about]
+  	✔ Add Pinia for state management? … No / Yes
+  	✔ Add Vitest for Unit testing? … No / Yes
+  	✔ Add an End-to-End Testing Solution? … No / Cypress / Nightwatch / Playwright
+  	✔ Add ESLint for code quality? … No / Yes
+  	✔ Add Prettier for code formatting? … No / Yes
+  	✔ Add Vue DevTools 7 extension for debugging? (experimental) … No / Yes
+
+	Scaffolding project in ./<your-project-name>...
+	Done.
+	
+
+  	cd <your-project-name>
+  	npm install
+  	npm run dev
+-------------------------------------------------------------------------------------------------------------
+
+ 	Single-File Components[SFC]:
+ 	----------------------------
+
+ 	 <script setup>
+	import { ref } from 'vue'
+	const count = ref(0)
+	</script>
+
+	<template>
+ 	 <button @click="count++">Count is: {{ count }}</button>
+	</template>
+
+	<style scoped>
+	button {
+ 	 font-weight: bold;
+	}
+	</style>
+--------------------------------------------------------------------------------------------------------------
+
+	API Styles:
+	-----------
+	Vue components can be authored in two different API styles: Options API and Composition API.
+--------------------------------------------------------------------------------------------------------------
+	Options API:
+	------------
+	With Options API, we define a component's logic using an object of options such as data, methods, and mounted.Properties defined by options are exposed on this inside functions, which points to the component instance:
+
+
+	<script>
+	export default {
+ 	 // Properties returned from data() become reactive state
+  	// and will be exposed on `this`.
+  	data() {
+    	return {
+     	 count: 0
+   	 }
+  	},
+
+  	// Methods are functions that mutate state and trigger updates.
+  	// They can be bound as event handlers in templates.
+  	methods: {
+    	increment() {
+      	this.count++
+    	}
+  	},
+
+  	// Lifecycle hooks are called at different stages
+  	// of a component's lifecycle.
+  	// This function will be called when the component is mounted.
+  	mounted() {
+   	 console.log(`The initial count is ${this.count}.`)
+  	}
+	}
+	</script>
+
+	<template>
+ 	 <button @click="increment">Count is: {{ count }}</button>
+	</template>
+------------------------------------------------------------------------------------------------------------
+
+ 	
+		Composition API:
+		----------------
+	With Composition API, we define a component's logic using imported API functions. In SFCs, Composition API is typically used with <script setup>. The setup attribute is a hint that makes Vue perform compile-time transforms that allow us to use Composition API with less boilerplate. For example, imports and top-level variables / functions declared in <script setup> are directly usable in the template.
+
+	Here is the same component, with the exact same template, but using Composition API and <script setup> instead:
+
+	<script setup>
+	import { ref, onMounted } from 'vue'
+
+	// reactive state
+	const count = ref(0)
+
+	// functions that mutate state and trigger updates
+	function increment() {
+  	count.value++
+	}
+
+	// lifecycle hooks
+	onMounted(() => {
+  	console.log(`The initial count is ${count.value}.`)
+	})
+	</script>
+
+	<template>
+  	<button @click="increment">Count is: {{ count }}</button>
+	</template>
+-------------------------------------------------------------------------------------------------------------
+        In fact, the Options API is implemented on top of the Composition API! The fundamental concepts and knowledge 	about 	Vue are shared across the two styles.

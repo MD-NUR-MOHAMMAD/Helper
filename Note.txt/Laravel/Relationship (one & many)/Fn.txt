@@ -1,0 +1,2 @@
+// ঐ authors কত গুলি post আছে তা দেখাবে।
+$authors = Author::withCount('posts')->get();

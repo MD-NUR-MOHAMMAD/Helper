@@ -1,0 +1,10 @@
+Create:- Profile Table এ data insert করতে।
+routes ------------------------------------------------------------------------------------------------
+Route::resource('subcategories', [SubCategoryController::class, 'store']);
+-------------------------------------------------------------------------------------------------------
+Controller --------------------------------------------------------------------------------------------
+public function store(Request $request){
+  SubCategory::create($request->all());
+  return redirect()->route('subcategories.index')->with('success', 'SubCategory created successfully.');
+}
+-------------------------------------------------------------------------------------------------------

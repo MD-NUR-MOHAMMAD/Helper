@@ -1,0 +1,81 @@
+		  sir video:
+ 		-------------
+
+		Bootstrap:
+	Create a folder for project. 
+
+	Project/
+	  assets/
+	    css/
+	    js/
+	    images/
+
+	  index.html
+	      head a
+	      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	
+	     body er nich:
+		Navbar 
+		Carousel
+
+                      <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+
+
+	I can add it cdn link for without bootstrap download.
+
+                 Download update version bootstrap. Unzip this file and copy css and js folder. Paste it assets folder.
+
+
+Navbar is same in all page. so it is include a index file.[ navbar will be down]
+all page is create here.
+	about.html
+	contact.html
+	index.html
+	message.html
+	products.html
+	service.html
+
+search: logo lorem 
+img tag is set for logo 
+<a class="navbar-brand" href="#"><img src="assets/images/logo.svg" alt=""></a>
+
+link files:                    
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link" href="message.html">Message</a>
+                    <a class="nav-link" href="about.html">About</a>
+	dropdown page banate pari banyni .
+
+
+
+.row [row is how much col or coloum is here]
+ <div class="row">
+            <div class="col-2">
+	nav&tab [bootstrap]
+            </div>
+            <div class="col-7">
+            </div>
+            <div class="col-3">
+	nav&tab [bootstrap]
+            </div>
+  </div>
+
+footer:
+
+example theke footer inspact kortepari.
+
+again Download a giye example download kortepari.
+unzip kore all example see. I get only footer.
+off-course container is only one. 
+          
+
+
+
+
+
+
+
+
+
+
+

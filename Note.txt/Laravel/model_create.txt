@@ -1,0 +1,20 @@
+model:
+
+php artisan make:model ...modelName... -mcrs!!!(m:migration,c:controller,r:resource,s:seeder)
+php artisan migrate
+php artisan rollback
+php artisan migrate:refresh   (rollbak and migrate both)
+
+Microsoft Windows [Version 10.0.19044.1766]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\xampp\htdocs\LARAVEL\Practice\Nur>php artisan make:model Nur -mcr
+
+   INFO  Model [E:\xampp\htdocs\LARAVEL\Practice\Nur\app\Models\Nur.php] created successfully.
+
+   INFO  Migration [E:\xampp\htdocs\LARAVEL\Practice\Nur\database\migrations/2024_05_08_012823_create_nurs_table.php] created successfully.
+
+   INFO  Controller [E:\xampp\htdocs\LARAVEL\Practice\Nur\app\Http\Controllers\NurController.php] created successfully.
+
+
+E:\xampp\htdocs\LARAVEL\Practice\Nur>

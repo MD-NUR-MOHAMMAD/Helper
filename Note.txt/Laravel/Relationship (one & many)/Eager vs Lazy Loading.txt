@@ -1,0 +1,9 @@
+Eager :- relational query গুলোতে n+1 problem দেখা যায়, প্রতেক কাজের জন্য আলাদা আলাদা query করে।  with function টা group আকারে result দেয় যে কারনে query সংখ্যা কমে যায়।
+  Post::with(['image', 'comment'])->get();
+
+  public function(Post $post){
+    $post->loadMissing('phoneNumbers');
+  }
+
+Lazy :-
+  $post->image->name

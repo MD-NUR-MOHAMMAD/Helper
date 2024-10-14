@@ -1,0 +1,31 @@
+		Vue or any new technology
+		---------------------------------
+
+1) Environment setup:
+
+	Environment setup is first page run. Need to their 	own site. npm Yarn are any. 
+
+2) Router setup:
+
+	install with the help of chat GPT.
+
+3) State management:
+
+	vuex or pinia
+
+		Framework:
+		---------------
+Every framework has a main language such as C, JAVA, JS, PHP. C is a mother language. C conbart into binary. 
+
+
+1) Statement    (if else)
+
+2) Loop
+
+3) Props  (pass value Parent to child)
+
+4) Event
+
+5) Life cycle (which class component is run)
+
+6) Path (every framework has sepate path setup his own doc) 

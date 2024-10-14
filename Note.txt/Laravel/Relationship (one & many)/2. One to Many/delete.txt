@@ -1,0 +1,18 @@
+routes --------------------------------------------------------------------------------------------------
+Route::resource('subcategories', SubCategoryController::class);
+---------------------------------------------------------------------------------------------------------
+Controller ----------------------------------------------------------------------------------------------
+public function destroy(SubCategory $subcategory){
+  SubCategory::destroy($subategory->id);
+  return redirect()->route('subcategories.index')->with('success', 'SubCategory deleted successfully.');
+}
+---------------------------------------------------------------------------------------------------------
+View ----------------------------------------------------------------------------------------------------
+<form action="{{ route('subcategories.destroy', $subcategory) }}" method="POST" class="d-inline">
+  @csrf
+  @method('DELETE')
+  <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this data?')">
+    <i class="bi bi-trash"></i>
+  </button>
+</form>
+---------------------------------------------------------------------------------------------------------

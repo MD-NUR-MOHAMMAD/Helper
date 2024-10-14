@@ -1,0 +1,25 @@
+.....GitHub.....
+
+Create a repository for ..... New a click.
+next complete it and cteate a click.
+Work into the file.
+Now complete this step:
+File Up for github
+1.git status + enter.
+2.git add . + enter.
+3.git commit-m "message here".
+4.git push.
+
+File download for github
+
+git clone ....Link here....
+git pull
+
+
+note: don't tuch git download file.
+
+
+New Repository:
+
+github.com/new
+---------------

@@ -1,0 +1,18 @@
+js function:
+
+function start(){
+console.log("fjalsjfalskjf");
+}
+
+start(); [call the function]
+
+setTimeout() [1000 means 1second]
+
+callback use and  callback() call
+
+
+JSON [JavaScript object Notation]:
+
+	{} diye object return kora hoy
+	[] dily array return kora hoy
+console.log(myjson.friends[2].website);

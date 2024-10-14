@@ -1,0 +1,3 @@
+
+environment setup [ composer create-project laravel/laravel example-app ]
+database setup  [ .env ( config > database)]

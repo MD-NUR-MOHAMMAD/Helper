@@ -1,0 +1,5 @@
+
+
+@todo= "methods name" [methods a ata ache]
+v-model="form.title" [ ata data ar property and key, ata diye kora easy]
+:model="form" [data er form property theke valo neya hoyche ]

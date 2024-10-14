@@ -1,0 +1,31 @@
+Controller -------------------------------------------------------------------------------
+public function index(){
+  $allUser = User::with('profile')->paginate(10);
+  return view('user.index', ['users' => $allUser]);
+}
+---------------------------------------------------------------------------------------------
+View --------------------------------------------------------------------------------------
+@forelse ($users as $user)
+  <tr>
+    <th scope="row">{{ $user->id }}</th>
+    <td>{{ $user->name }}</td>
+    <td>{{ $user->email }}</td>
+    <td>{{ $user->roles }}</td>
+    <td> 
+    @if ($user->profile)
+       <ul>
+         <li>{{ $user->profile->first_name }}</li>
+         <li>{{ $user->profile->last_name }}</li>
+         <li>{{ $user->profile->phone }}</li>
+       </ul>
+     @else
+       <span class="text-danger">No Profile available</span>
+     @endif
+    </td>
+    <td>{{ $user->created_at }}</td>
+    <td>{{ $user->updated_at }}</td>
+  </tr> 
+@empty
+  <h1>no users found!!</h1>
+@endforelse
+---------------------------------------------------------------------------------------------

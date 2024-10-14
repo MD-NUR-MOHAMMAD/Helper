@@ -1,0 +1,278 @@
+	Create Database:
+
+  CREATE DATABASE [db name]
+  DROP DATABASE [db name]
+
+	Create Table:
+
+  CREATE TABLE customers(
+	id  INT NOT NULL 	AUTO_INCREMENT,
+	firstName VARCHAR (255),
+	lastName VARCHAR (255),
+	address VARCHAR (255),
+	email VARCHAR (255),
+	city VARCHAR (255),
+	division VARCHAR (255),
+	zipcode VARCHAR (255),
+	PRIMARY KEY (id)
+	);  
+
+	Insert Data:
+	-------------
+  Table a jeye. 
+
+  INSERT INTO customers[table name]  (field name) VALUES (data);
+
+  [single insert]
+
+  INSERT INTO customers(firstName,lastName,address,email,city,division,zipcode) VALUES ('abu','abul','nowakali','abu@gmail.com','dhada','chottogram','1240');
+
+  [multi insert]
+
+  INSERT INTO customers(firstName,lastName,address,email,city,division,zipcode) VALUES ('abu','abul','nowakali','abu@gmail.com','dhada','chottogram','1240'),
+  ('abdul','Akash','nowakali','aksh@gmail.com','dhada','chottogram','1240'),
+  ('hamdu','mis','nejj','abu@gmail.com','dhada','chottogram','1240'),
+  ('fras','afassfbul','fasf','abu@gmail.com','dhada','chottogram','1240'),
+  ('ffa','abful','nowakali','abu@gmail.com','dhada','chottogram','1240'),
+  ('adr','fsdf','nowakali','abu@gmail.com','dhada','chottogram','1240'),
+  ('adf','abfsfasul','nowakali','abu@gmail.com','dhada','chottogram','1240');
+
+	Update data:  v5
+	---------------
+  UPDATE customers[table name]
+  SET city = koncity set korbo ta dibo.[unique akta vaule dore kaj korte hobe]
+  WHERE id = 2; [kon id]
+
+  [we can update one or more field at a time]
+
+  UPDATE customers
+  SET city = 'chottogram'[chilo dhada]
+  WHERE id = 2;
+  UPDATE customers
+  SET city = 'chottogram'
+  WHERE id = 6;
+  UPDATE customers
+  SET city = 'chottogram'
+  WHERE id = 7;
+
+	Delete data:  v6
+	--------------
+  DELETE FROM customers [table er konta delete korbo ta id diye dorbo]
+  WHERE id = 9;
+
+	Alter Table:  v7
+	----------------
+  Table a coulmn add or delete.
+
+  ALTER TABLE customers 
+  ADD newCol VARCHAR(255);
+
+  ALTER TABLE customers  
+  MODIFY COLUMN newCol INT(11);
+
+  ALTER TABLE customers
+  DROP COLUMN newCol;     / DROP newCol;
+ 
+	Select Data:  v8
+	-------------------
+  SELECT * FROM customers;
+  SELECT * FROM customers LIMIT 3; 
+  SELECT * FROM customers LIMIT 3,4;   
+  SELECT firstName, lastName, email FROM customers;
+  SELECT * FROM customers WHERE id=7;
+  SELECT * FROM customers ORDER BY lastName;
+  SELECT * FROM customers ORDER BY lastName DESC;
+  SELECT city FROM customers;
+  SELECT DISTINCT city FROM customers;
+  
+	Operators Overview:  v9
+	----------------------------
+  Operator : =, <>, >, <, >=, <=, BETWEEN, LIKE, IN, IS or IS NOT, IS NOT DISTINCT FROM, AS
+ 
+	Between Operator:  v10
+	-----------------------------
+  
+  ALTER TABLE customers 
+  ADD age INT;
+
+  SELECT * FROM customers
+  WHERE age 
+  BETWEEN 20 AND 30;
+
+	v11: Like operator /NOT LIKE operator
+	------------------------------------------------
+  Like operator search korar jonno use hoy.
+
+  SELECT * FROM customers
+  WHERE city LIKE '%a';        [match last letter]
+
+  SELECT * FROM customers
+  WHERE city LIKE 'd%';       [match first letter]
+
+  SELECT * FROM customers
+  WHERE division LIKE '%otto%';  [any match]
+
+  SELECT * FROM customers
+  WHERE division NOT LIKE '%otto%'; [without   match]
+  
+	v12: IN operator
+	--------------------
+ 
+  SELECT * FROM customers 
+  WHERE division IN ('Dhaka', 'Rajshahi', 'Khulna');
+
+	v13: Indexes
+	---------------
+By indexes find data more quickly and efficiently.
+index hole Structure a primary key dekabe.
+
+CREATE INDEX CIndex
+ON customers (city);
+
+SELECT city FROM customers;
+
+DROP INDEX CIndex ON customers;
+
+	v14: Relationships & Foreign Keys
+	-------------------------------------------
+CREATE TABLE orders(
+    id INT NOT NULL AUTO_INCREMENT,
+    orderNumber VARCHAR(255),
+    productId INT,
+    customerId INT,
+    orderDate DATETIME default CURRENT_TIMESTAMP,
+    PRIMARY KEY(id),
+    FOREIGN KEY (productId) REFERENCES products (id),
+    FOREIGN KEY (customerId) REFERENCES customers (id)
+);
+
+	v15: Joins
+	-------------
+*Used to combine rows from two or more tables based on a common field between them
+*Types: INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN
+
+Value insert products table:
+
+INSERT INTO products(name, price) VALUES
+('Product One', 20),
+('Product Two', 30),
+('Product Three', 50),
+('Product Four', 30),
+('Product Five', 65),
+('Product Six', 40),
+('Product Seven', 35),
+('Product Eight', 45),
+('Product Nine', 10),
+('Product Ten', 30);
+
+
+Value insert orders table:
+
+INSERT INTO orders (orderNumber, productId, customerId) VALUES
+(01, 1, 3),
+(02, 3, 1),
+(03, 1, 1),
+(04, 1, 2),
+(05, 1, 1),
+(06, 4, 6),
+(07, 4, 2),
+(08, 2, 2),
+(09, 1, 3);        [4 no customers id is deleted]
+
+	v16: Inner Join
+	------------------
+SELECT customers.firstName, customers.lastName, orders.orderNumber
+FROM customers
+INNER JOIN orders
+ON customers.id = orders.customerId
+ORDER BY customers.lastName;  [ata extra na dileo query hoye geche]
+
+	v17: Left Join	[left table means select a left table ja thake]
+	-----------------
+SELECT customers.firstName, customers.lastName, orders.orderNumber, orders.orderDate
+FROM customers
+LEFT JOIN orders
+ON customers.id = orders.customerId
+ORDER BY customers.lastName;
+
+	v18: Right Join
+	------------------
+SELECT orders.orderNumber, customers.firstName, customers.lastName
+FROM orders
+RIGHT JOIN customers 
+ON orders.customerId = customers.id
+ORDER BY customers.lastName;
+
+	V19: Union Operator
+	--------------------------
+same data niye ase [set math ar moto]
+
+Creat new table:
+CREATE TABLE suppliers(
+    id INT NOT NULL AUTO_INCREMENT,
+    firstName VARCHAR(255),
+    lastName VARCHAR(255),
+    address VARCHAR(255),
+    email VARCHAR(255),
+    city VARCHAR(255),
+    division VARCHAR(255),
+    zipcode VARCHAR(255),
+    PRIMARY KEY(id)
+);
+INSERT INTO suppliers(firstName,lastName,address,email,city,division,zipcode) VALUES ('Al','abul','nowakali','abu@gmail.com','nowakhali','chittogram','1240'),
+  ('Md','Akash','nowakali','aksh@gmail.com','dhada','chottogram','1240'),
+  ('hamdu','mia','nejj','abu@gmail.com','Netrokona','Dhaka','1240'),
+  ('Rashid','Nijam','fasf','abu@gmail.com','rongpur','chottogram','1240'),
+  ('Badil','Asraf','nowakali','abu@gmail.com','dhada','Mymensing','1240'),
+  ('Shohag','Sujon','nowakali','abu@gmail.com','dhada','chottogram','1240'),
+  ('Al','Mamun','Dinajpur','abu@gmail.com','nowakhali','Barisal','1240');
+
+
+SELECT city FROM customers
+UNION
+SELECT city FROM suppliers
+ORDER BY city;
+
+	v20: Union All
+	-------------------
+
+SELECT city FROM customers
+UNION ALL
+SELECT city FROM suppliers
+ORDER BY city;
+
+same city division:
+
+SELECT city, division FROM customers
+WHERE city = 'Dhaka'
+UNION ALL
+SELECT city, division  FROM suppliers
+WHERE city = 'Dhaka'
+ORDER BY city;
+
+	v21: Join Multiple Tables
+	-------------------------------
+SELECT orders.orderNumber, customers.firstName, customers.lastName, products.name
+FROM orders
+INNER JOIN products
+ON orders.productId = products.id
+INNER JOIN customers
+ON orders.customerId = customers.id
+ORDER BY orders.orderNumber;      [Extra]
+
+	v22: Subquery IN SELECT / INNER query / Nested query
+	-----------------------------------------------------------------------
+USE IN operator:
+
+SELECT * FROM customers 
+WHERE id IN (SELECT id FROM customers WHERE age > 30);
+
+	v23: Subquery with INSERT
+	----------------------------------
+Create customers bacup table:
+customers table ar sob data same customers_bacup table a INSERT hobe.
+customers_bacup table a giye query korte hobe.
+
+INSERT INTO customers_bacup
+SELECT * FROM customers
+WHERE id IN(SELECT id FROM customers);

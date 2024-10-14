@@ -1,0 +1,7 @@
+when i clone or pull from sir git:
+
+1. npm i
+2. npm run build
+3. composer update
+4. php artisan migrate
+5. php artisan serve

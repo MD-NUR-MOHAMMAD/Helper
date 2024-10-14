@@ -1,0 +1,86 @@
+# সব comment গুলো একই table এ রাখাই হল polimorphic যেমনঃ- post comment, image comment
+migration/comments ------------------------------------------------------------------------------------------------------
+public function up(): void{
+  Schema::create('comments', function (Blueprint $table) {
+    $table->id();
+    $table->bigInteger('user_id')->unsigned()->nullable();
+    $table->foreign('user_id')->references('id')->on('users');
+    $table->string('comment');
+    $table->bigInteger("commentable_id")->unsigned();
+    $table->String("commentable_type");
+    $table->timestamps();
+  });
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+Models/comment -----------------------------------------------------------------------------------------------------------
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+
+class Comment extends Model{
+    use HasFactory;
+    protected $fillable = ['user_id','comment'];
+
+    public function commentable(): MorphTo{
+        return $this->morphTo();
+    }
+    public function user(): BelongsTo{
+        return $this->belongsTo(User::class);
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+Models/post ------------------------------------------------------------------------------------------------------------------
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
+public function comments(): MorphMany{
+  return $this->morphMany(Comment::class, 'commentable');
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+Models/image ---------------------------------------------------------------------------------------------------------------
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
+public function comments(): MorphMany{
+  return $this->morphMany(Comment::class, 'commentable');
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+create --------------------------------------------------------------------------------------------------------------------------
+$post = Post::find($id);
+$post->comments()->create(['user_id' => 1, 'commen'=> "hello nice post"]);
+-----------------------------------------------------------------------------------------------------------------------------------
+read ----------------------------------------------------------------------------------------------------------------------------
+//controller
+$posts = Post::with('comments.user')find($id);
+
+//view
+@foreach($posts as $post)
+  {{$post->title}}
+  @foreach($posts->comments as $comment)
+    {{$comment->comment}}
+    {{$comment->user->name}}
+  @endforeach
+@endforeach
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

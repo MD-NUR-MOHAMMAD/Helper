@@ -1,0 +1,217 @@
+
+	debugbar:
+
+search: debugbar laravel
+ 
+niche Installation 
+link copy kore oi project a cmd te paste
+
+perpage a :  view query sob dekte pari 
+
+
+	video 4: 
+search: Blade templates engine
+
+sob jante hobe
+
+out put hoy {{  }} diye
+
+
+set roules admin users : 
+search: ChatGPT i want to create admin middleware to check role filed of users table to 'admin' in laravel. how to create? enter
+
+how to make middleware:
+cmd: php artisan make:middleware (middleware name)
+
+
+	video 12:
+   spatie package
+ add for one to many relationship
+
+bootstrap a provider.php name file ache
+spatie package ar site theke add korte hobe 
+laravel 11 er 
+spatie/HTMLserviceprovider::class,
+
+html form/builder code [subcategories create.blade.php te dibo]
+
+	video 16:
+
+route cache korle site fast hoy route cache korle sobkay sese kore valo
+
+
+
+ softdelete         [migration a thakthe hobe] :
+
+ $table->softDeletes();  
+
+model a nitehoby:  
+
+use Illuminate\Database\Eloquent\SoftDeletes;
+use SoftDeletes;   [ata lichkle up a ata add hobe]
+---------------------------------------------------------------------------
+
+admin dekher jonno :
+      
+$records = YourModel::withTrashed()->get(); 
+
+color: <tr class="{{subCategory-> deleted_at ? 'table-danger' : '  '}}">
+
+	video 17:
+ajex means code diye valo patabo.
+
+<meta name="csrf-token" content="<?php echo csrf_token(); ?>" id="token"> [I can a token in any page]ata jQuery[jQuery download lagbe] and Axios a use korte parbo
+
+	video 18:
+
+	query builder:
+
+when we create a query we can see one data is given is many time so solve the problem :
+distinct()
+
+	Eloquent:
+
+Eloquent method is more easy than query builder. Eloquent method is work with Controllers
+
+	video 19:
+
+laravel tinker : [rapid test]
+use App\Models\Todo;
+
+$to = Todo::all();
+
+use chara o tinker kaj kore. we can change and save data.
+$c = Category::all();
+
+$c = Category::with('subcategory')->get();
+
+Local scope:
+function create kore query korte pari.
+
+
+Accessor: when we use it. [function ar maddom a change hobe]
+$u = Users::find(4);
+$u->name; [call name function in model]
+$u->name = "sfjaslfja"; [set new name]
+$u->save(); [name ar set function call hoy so al is lowercase]name k attrebute bole. attrebute custing kora jay. our book 
+
+old style:
+protected function getnamemailAttribute()
+     return $this->name. " ( " . $this->email. " ) ";
+
+	video 20:
+
+php artisan make:model Product -mcrsfR  [R= Request Store ,Request Update] form a value dile request a jay.
+
+image resize korar jonno package = [img intervention]
+image ar jonno storage shortcut thakte hobe. storage>app>pulic 
+
+lightbox holo imger jonno
+
+	video 21:
+
+lightbox search: jQuery lightbox [git zip download]
+dist means distivution 3ta file [public>assets>past 3times]
+
+image intervention:
+
+cmd: composer require intervention/image
+
+size: Resizeing images proportionally 
+
+not resize its scle
+
+image resize and watermark
+
+	video 24:
+
+has many through relation for a image.
+
+
+	video 25:
+
+polimorfic relationship:
+sharch: polymorphic relationship laravel [open laravel site one to many]
+
+model banabo
+
+kon kon table a comment korte pabe sekane code diye dibo
+
+	video 27:
+
+Eager loading and lazy loading . defualt lazy loading . (with) is a eager loading. with liki model a. object er with means loadmissing (['image','comment.user']) array pass korano jay.
+function a dd carly base hoy.
+
+comment:
+replay korar jonno chatGPT te search: how set a database in real time chat,
+diffForHumans() [real time dekai koto second/minute/hour/day]
+codepen a prodect show.
+
+
+disqus.com [comment replay sob ache]
+
+	video 28:
+
+php artisan commend: 
+
+create: 2 way  1) routes>console.php  2) routes>web.php[kom kori]
+
+code: 
+
+1) routes>console.php:
+Artisan::command('clearall', function(){
+Artisan::call('cache:clear');
+Artisan::call('view:clear');
+$this->info('cleared!'); [output show korbe ata]
+})->purpose('Clear all caches');
+
+2) routes>web.php:
+Route::get('ca', function () {
+Artisan::call('view:clear');
+Artisan::call('cache:clear');
+dd("view cleared");
+});
+
+
+we can create a file for artisan commend.
+php artisan make:command newtodos [file create hobe]
+app>Console>Commands>newtodos.php
+
+$singnature = 'newtodos {n} {m}'; [command k call korbo kivabe, n and m dorar jonno handle() ache]
+
+$a = $this->argument('n');
+$b = $this->argument('m');
+[user k ask kore value dite parbo.]
+[factory  banate pari amader motokore]
+
+	video 29:
+
+Authentication and Authorization:
+Authentication means valid. Authorization means kon level porjonto valid. Authorization ar jonno amra role base kaj kori.
+
+	Traits:     
+Traits means code reuse.
+code:    [class na baniye trait banaychi jate common class a use korte pari]
+trait Logger {
+public function log($message){
+echo $message;
+}
+}
+
+	Auth:  
+auth() globle helper
+auth()->check() [user login ache naki na true or false pabo]
+auth()->guest() [login nai]
+auth()->user()->id(); [id jante parbo] / auth()->id() [user id pabo]
+
+	video 30:
+
+blade Components:
+2 ta composent create hoy 1) view a 2) app>view>Components>Footer.php
+component use <x-form.input/> diye[form means folder input means blade file]
+we use footer component and use daynamic value . [footer.blade.php te {{$yearfrom}}-{{$yearto}}] 
+
+	Slots:
+yeild er moto 
+{{$slot}} diye dynamic value pass korate pari.
+yeild to loyout ar jonno and Slot holo component ar jonno 

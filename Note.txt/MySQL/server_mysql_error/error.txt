@@ -1,0 +1,19 @@
+	server error:
+
+Error: MySQL shutdown unexpectedly.
+8:13:38 PM  [mysql] 	This may be due to a blocked port, missing dependencies, 
+8:13:38 PM  [mysql] 	improper privileges, a crash, or a shutdown by another method.
+8:13:38 PM  [mysql] 	Press the Logs button to view error logs and check
+8:13:38 PM  [mysql] 	the Windows Event Viewer for more clues
+8:13:38 PM  [mysql] 	If you need more help, copy and post this
+8:13:38 PM  [mysql] 	entire log window on the forums
+
+
+	solve:
+go xampp>mysql>data[copy paste means backup]
+data> mysql, performance_schema, phpmyadmin,test folder and down files[delete]
+backup> mysql, performance_schema, phpmyadmin,test [copy and paste in data folder]
+server off on and it is completly solve.
+
+
+

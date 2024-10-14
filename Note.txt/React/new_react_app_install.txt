@@ -1,0 +1,11 @@
+         React install:
+
+
+  npm create vite@latest hacker-stories -- -- template react
+
+react
+JavaScript + SWC (for quick render)
+
+     cd hacker-stories
+      npm install
+      npm run dev

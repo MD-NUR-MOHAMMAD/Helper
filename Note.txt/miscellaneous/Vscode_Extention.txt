@@ -1,0 +1,10 @@
+VsCode Extention:
+1. Live Server
+2. Live Preview
+3. Prettier code formatter
+4. Auto Rename Tag
+5. html End Tag Labels
+6. Indent Rainbow
+7. Image Preview
+8. codeSnap
+9. GitHub themes

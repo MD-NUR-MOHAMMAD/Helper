@@ -1,0 +1,12 @@
+                                                Laravel:
+
+1.chaque composer in your pc and php -v (PHP Version). ans:no // xampp ar php path advence setting ar environment veriable a dibo and ok ok divo.next cmd write composer. (SERVER off and On)
+
+           Installation:
+
+xampp ar htdocs a project creat korbo. cmd te comand run korbo.
+
+1.composer create-project laravel/laravel project name (example-app).
+2.cd project name (example-app)
+ 
+For run : php artisan serve

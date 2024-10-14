@@ -1,0 +1,11 @@
+   C drive part:
+
+ check file explorer
+
+ right click window -> run search: diskmgmt.msc
+
+ (c:) right ckick -> Shrink -> enter amount ok GB (1000=1GB)
+
+ unallocated part a right click -> New Simple Volume Wizard -> next -> next
+
+ latter select ->file system NTFS -> next -> finish.

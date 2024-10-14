@@ -1,0 +1,25 @@
+routes -------------------------------------------------------------------------------------------------
+Route::resource('subcategories', SubCategoryController::class);
+--------------------------------------------------------------------------------------------------------
+controller ---------------------------------------------------------------------------------------------
+public function edit(SubCategory $subcategory){
+  $c = Category::pluck("name","id");
+  return view('subcategories.edit')->with('categories', $c)->with('subcategory', $subcategory);
+}
+public function update(Request $request, SubCategory $subcategory){
+  $request->validate([
+    'name' => 'required',
+    'category_id' => 'required|exists:categories,id'
+  ]);
+  $subcategory->update($request->all());
+  return redirect()->route('subcategories.index')->with('success', 'SubCategory updated successfully.');
+}
+--------------------------------------------------------------------------------------------------------
+loop.blade.php -----------------------------------------------------------------------------------------
+<a href="{{ route('subcategories.edit', $subcategory) }}" class="btn btn-sm btn-outline-secondary">
+  Edit
+</a>
+--------------------------------------------------------------------------------------------------------
+edit.blade.php -----------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------

@@ -1,0 +1,145 @@
+	v24: Subquery with Update & Delete
+	---------------------------------------------
+query chalache customers_bacup a update hoche customers a. powerful
+UPDATE customers
+SET salary = salary*0.50
+WHERE age IN(SELECT age FROM customers_bacup WHERE age >=30);
+
+DELETE FROM customers_bacup
+WHERE age IN(SELECT age FROM customers WHERE age = 14);  [customers_bacup table theke data delete hobe]
+
+
+	v25: TRUNCATE TABLE [ছিন্ন করুন]
+	--------------------------------------------
+Table thakbe but table er kono data thakbe na. Table structure thakbe.
+
+TRUNCATE TABLE suppliers;
+
+	v26: Wildcard Operators
+	------------------------------
+% and  _ this is wildcard.
+Description wildcard operators.
+
+	v27: Aliases for Column   [উপনাম, ছদ্মনাম]
+	-----------------------------
+Table / column rename korte Aliases use hoy.  [AS]
+
+SELECT firstName AS 'First Name', lastName AS 'Last Name' FROM customers;
+
+2 table combind:
+SELECT CONCAT(firstName,' ',lastName) AS 'Name', email, address, city FROM customers;
+
+SELECT CONCAT(firstName,' ',lastName) AS 'Name', CONCAT(address,' ',city) AS 'Address' FROM customers;
+
+	v28: Aliases for Table
+	--------------------------
+SELECT o.id, o.orderDate, c.firstName, c.lastName
+FROM orders AS o, customers AS c;
+
+	v29: Aggregate Functions   [সমষ্টি, সমূহ, সমবায় সমষ্টিগত, মোট,]
+  
+	------------------------------   [AVG,COUNT,MAX,MIN,SUM]
+
+SELECT AVG(age) FROM customers;
+SELECT COUNT(age) FROM customers;
+SELECT MAX(age) FROM customers;
+SELECT MIN(age) FROM customers;
+SELECT SUM(age) FROM customers;
+
+
+	v30: GROUP BY Statement
+	---------------------------------
+one or more column result set k goup kore aggreagte function join diye use korle ta group by statement function.
+SELECT age, COUNT(age)
+FROM customers
+WHERE age > 30
+GROUP BY age;
+
+SELECT age, COUNT(age) 
+FROM customers
+GROUP BY age;
+
+	v31: HAVING Clause  [WHERE is replace by HAVING]
+	--------------------------
+The SQL HAVING Clause is used in combination with the GROUP BY Cluse to restrict the groups of returned rows to only those whose the condition is TRUE.
+
+SELECT age, COUNT(age) 
+FROM customers
+GROUP BY age
+HAVING COUNT(age)>=2; 
+
+	v32: CREATE VIEW
+	-------------------------
+CREATE VIEW customers_view AS
+SELECT id, firstName, lastName
+FROM customers
+WHERE firstName IS NOT NULL;  [database a table create hobe]
+
+SELECT * FROM customers_view;
+
+
+	v33: Insert Data into a VIEW
+	-----------------------------------
+Same as Normal insert.
+INSERT INTO customers_view
+VALUES(26, 'Healal','Khan');
+
+	v34: WITH CHECK OPTION
+	-----------------------------------
+The purpose of the WITH CHECK OPTION is to ensure that all UPDATE and INSERT satisfy the condition (s) in the view definition.
+
+CREATE VIEW customers_view_new AS
+SELECT id, firstName, lastName
+FROM customers 
+WHERE firstName IS NOT NULL
+WITH CHECK OPTION;      [new table is create]
+
+INSERT INTO customers_view_new
+VALUES(27, 'Al','Amin');
+
+	v35: UPDATE, DELETE, DROP VIEW
+	-----------------------------------------------
+UPDATE customers_view
+SET firstName = 'Kamal'
+WHERE id = 27;
+
+DELETE FROM customers_view
+WHERE id = 26;
+
+DROP VIEW customers_view_new;
+
+
+	v36: UCASE & LCASE Functions
+	-----------------------------------------
+SELECT LCASE(firstName), UCASE(lastName), address FROM customers;
+
+	v37: MID, LENGTH, ROUND Functions
+	-------------------------------------------------
+SELECT MID(city,1,3) AS Shortcity FROM customers;  [1,3 means first 3 charcter]
+
+SELECT firstName, LENGTH(address) AS AssressLEN FROM customers;
+
+SELECT firstName, ROUND(salary,0) FROM customers;  [0 means decimal]
+
+	v38: NOW Function    [current data & time]
+	------------------------
+SELECT name, price, NOW() as Date FROM products;
+
+	v39: GUI Mode Operation  
+	--------------------------------
+ GUI mode means create db,table,column with {click}.
+
+
+	v40: DATABASE Backup
+	-------------------------------
+Backup means Export . Import and export is Here in a database. YOU must be select your database.
+
+	v41: PHP OOP and MySQLi CRUD Bangla Tutorial (Part-01)
+	--------------------------------------------------------------------------
+	v42: PHP OOP and MySQLi CRUD Bangla Tutorial (Part-02)
+	--------------------------------------------------------------------------
+	v43: PHP OOP and MySQLi CRUD Bangla Tutorial (Part-03)
+	--------------------------------------------------------------------------
+	v44: PHP OOP and MySQLi CRUD Bangla Tutorial (Part-04)
+	--------------------------------------------------------------------------
+	v45: PHP OOP and MySQLi CRUD Bangla Tutorial (Part-05)

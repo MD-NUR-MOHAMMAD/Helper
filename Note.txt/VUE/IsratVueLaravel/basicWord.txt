@@ -1,0 +1,10 @@
+
+For environment set is simple just hit site and copy this item and past it cmd and follow after step.
+After environment setup every file emtry.
+router.js outsite a folder becouse get it globally.
+bootstrap: 
+
+
+your main.js
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'

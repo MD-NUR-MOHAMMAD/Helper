@@ -1,0 +1,35 @@
+video21 : [Reactivity]
+clear
+data return a globle use hoy this diye.
+
+reactivity name change kole auto vue name change kore.
+recativity js ar fachir `proxy` 
+
+Proxy:
+1.data [object {}] dite hoy kon datar proxy korbo
+2.handler [object {}] aitar set method call hobe . handler a value set korle auto datay value set hoby.
+
+var date = {
+  name: "",
+  age: 24,
+};
+
+var handler = {
+  // proxyData.name set method call hobe
+  set(target, key, value) {
+    console.log(target);
+    console.log(key);
+    console.log(value);
+    if (key === "name") {
+      var outputElement = document.querySelector("#outputname");
+      outputElement.innerHTML = value;
+    }
+
+
+  },
+};
+
+var proxyData = new Proxy(date, handler);
+proxyData.name = "Hossain";
+
+note: JS value dore id/class diye

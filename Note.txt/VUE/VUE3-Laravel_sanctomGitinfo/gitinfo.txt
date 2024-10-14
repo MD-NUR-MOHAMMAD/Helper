@@ -1,0 +1,8 @@
+after git clone commend:
+
+composer update
+npm i
+path-url: https//..........[without localhost and public after /]
+npm run build
+php artisan migrate
+php artisan key:generate

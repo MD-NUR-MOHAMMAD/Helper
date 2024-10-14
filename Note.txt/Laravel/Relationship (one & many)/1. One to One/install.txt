@@ -1,0 +1,50 @@
+1. User & Profile
+2. User Has One Profile & Profile  Belongs To User
+3. make User and Profile by CMD
+-----------------------------------------------------------------------------------------------------------
+php artisan make:model User -mcrsf
+php artisan make:model Profile -m
+-----------------------------------------------------------------------------------------------------------
+4. database\migrations\0001_01_01_000000_create_users_table.php ----------------
+Schema::create('users', function (Blueprint $table) {
+  $table->id();
+  $table->string('name');
+  $table->string('email')->unique();
+  $table->string('password');
+  $table->set('roles', ['admin', 'user'])->default('user');
+  $table->timestamps();
+});
+------------------------------------------------------------------------------------------------------------
+5. database\migrations\2024_05_05_034128_create_profiles_table.php --------------
+Schema::create('profiles', function (Blueprint $table) {
+  $table->id();
+  $table->bigInteger('user_id')->unsigned()->nullable();
+  $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');          
+  $table->string('phone');
+  $table->string('address');
+  $table->string('photo');
+  $table->set('gender', ['male', 'female', 'other'])->default('other');
+  $table->date('birthday');
+  $table->string('website');
+  $table->string('description');
+  $table->timestamps();
+});
+-----------------------------------------------------------------------------------------------------------
+6. app\Models\User.php ---------------------------------------------------------------------------
+<?php
+use Illuminate\Database\Eloquent\Relations\HasOne;
+class User extends Authenticatable {
+  public function profile(): HasOne {
+    return $this->hasOne(Profile::class);
+  }
+}
+?>
+-----------------------------------------------------------------------------------------------------------
+7. app\Models\Profile.php ---------------------------------------------------------------------------
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+class Profile extends Model {
+  public function user(): BelongsTo {
+    return $this->belongsTo(User::class);
+  }
+}
+-----------------------------------------------------------------------------------------------------------
