@@ -1,5 +1,17 @@
 
-    Select file for CRUD:
+    Select file for CRUD:  
+
+	[Create, Read, Update, Delete]
+
+resorce a  7 method all are function :
+	index	[show all]
+	create	[form show korabo]
+	store	[form submit korle store function call hobe]
+	show	[single item dekanur jonno]
+	edit	[form show korbo data edit]  
+	update	[form submit korle update function call hobe]
+	destroy	[delete er jonno]
+
 
      	normaly = Controllar, web.php, insert, index, update, edit, delete
      

@@ -1,0 +1,16 @@
+search: Download mysql installer
+
+Windows (x86, 32-bit), MSI Installer    [click download button]
+
+No thanks, just start my download.        [click this word] simle download done.
+
+next and exiquit set root password[123local$%^] next finish
+
+search: phpmyadmin download
+
+download a zip file
+
+complete this work:
+when click the browser fill user name = root
+			pass = 123local$%^
+

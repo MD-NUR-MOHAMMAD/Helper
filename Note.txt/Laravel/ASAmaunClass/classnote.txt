@@ -1,0 +1,45 @@
+
+	V3: Model View Controller
+
+how to pass data with view= view liner up a variable nibo and view ar second parameter a [] / array patate pari
+
+code: public function index()
+{
+	$title = "Todo list lllllllllllllllllllkfasjfjasdf";
+	return view("todo.index",['title' =>$title]);
+	return view("todo.index",['title' =>$title, 'todos' => Todo::all()]);
+} 
+
+
+expline:
+'title' = name   [name 'title' k index.blade.php blade a variable hisebe {{$title}} V.V.I]
+$title = value
+
+'todos' = name  
+Todo::all() = todo table ar all data niye asbe. ata array / object hiye ase tai loop lagbe. ja table theke value ane dekabe
+
+{{$todo->title}} = todo table er title show korbe
+{{$todo->description}} = todo table er description show korbe 
+
+index.blade.php :
+@foreach ($todos as $todo)
+	<li>{{ $todo->title }} - {{ $todo->description}} - {{ $todo->is_completed }}</li>
+@endforeach
+
+note: create ar maddome value db store hoche and index a loop ar maddome value db theke show korche.
+
+	V4: Role middleware
+
+@csrf 	[form a token dey]  @ means directive
+
+@auth 
+        <marquee > only logged in user see this </marquee>
+@endauth
+
+@guest
+       <marquee > only not  logged in user see this </marquee>
+@endguest
+
+
+Directive jante: search: blade template engine
+
