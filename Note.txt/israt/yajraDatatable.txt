@@ -1,0 +1,154 @@
+Yajra Datatable is a Laravel package that provides a convenient way to integrate **jQuery DataTables** with server-side processing in Laravel applications. It simplifies handling complex queries, sorting, searching, and pagination on the server side while making it easy to display and manipulate data in an interactive table format on the client side.
+
+### Key Features:
+1. **Server-side processing**: Handles large datasets efficiently by processing data on the server, reducing the load on the client.
+2. **Search and Sorting**: Built-in support for multi-column search and sorting.
+3. **Pagination**: Automatically manages pagination based on the data size and request parameters.
+4. **Custom Query Support**: Allows you to create custom queries, making it flexible for different use cases.
+5. **Eloquent or Query Builder**: Works with Laravel's Eloquent ORM or Query Builder for fetching data.
+
+### Usage in Laravel:
+You can use it by installing the package via Composer and then implementing it in your controller and view.
+
+#### Installation:
+```bash
+composer require yajra/laravel-datatables-oracle
+```
+
+#### Basic Example:
+1. **Controller**:
+   ```php
+   use Yajra\DataTables\DataTables;
+
+   public function index()
+   {
+       $users = User::select(['id', 'name', 'email', 'created_at', 'updated_at']);
+       return DataTables::of($users)->make(true);
+   }
+   ```
+
+2. **View**:
+   ```html
+   <table id="users-table" class="table">
+       <thead>
+           <tr>
+               <th>ID</th>
+               <th>Name</th>
+               <th>Email</th>
+               <th>Created At</th>
+               <th>Updated At</th>
+           </tr>
+       </thead>
+   </table>
+
+   <script>
+   $(function() {
+       $('#users-table').DataTable({
+           processing: true,
+           serverSide: true,
+           ajax: '{{ route('your-route') }}',
+           columns: [
+               { data: 'id', name: 'id' },
+               { data: 'name', name: 'name' },
+               { data: 'email', name: 'email' },
+               { data: 'created_at', name: 'created_at' },
+               { data: 'updated_at', name: 'updated_at' }
+           ]
+       });
+   });
+   </script>
+   ```
+
+This setup allows you to display data with DataTables and handle large datasets efficiently using Laravel's powerful back-end features.
+-----------------------------------------------------------------------------------
+$users = User::select(['id', 'name', 'email', 'created_at', 'updated_at']);
+       return DataTables::of($users)->make(true);
+The code snippet you provided is part of a Laravel controller method, and it is used to implement server-side processing of data with **Yajra DataTables**. Here's a breakdown of what each part of the code does:
+
+```php
+$users = User::select(['id', 'name', 'email', 'created_at', 'updated_at']);
+return DataTables::of($users)->make(true);
+```
+
+### 1. **`$users = User::select([...]);`**
+   - **`User::select([...])`**: This is using **Eloquent**, Laravel’s ORM (Object-Relational Mapping), to fetch specific columns (`id`, `name`, `email`, `created_at`, and `updated_at`) from the `users` table in the database. 
+   - The result is a query builder object that contains the query to get the specified data from the users table, but it hasn’t been executed yet (no actual data has been retrieved from the database at this point).
+
+### 2. **`return DataTables::of($users)`**
+   - **`DataTables::of($users)`**: This part converts the `$users` query builder instance into a format that can be handled by Yajra DataTables for server-side processing.
+   - The `DataTables::of()` method accepts different types of data sources, such as **Eloquent**, **Query Builder**, **Collections**, or even raw arrays. In this case, it's using the `$users` Eloquent query to tell DataTables what data to process.
+   - This method also allows Yajra DataTables to handle sorting, filtering, and pagination automatically based on the DataTables plugin’s request from the front end.
+
+### 3. **`->make(true)`**
+   - **`make(true)`**: This finalizes the DataTables response and converts it into a JSON response. The `true` parameter indicates that it should send a complete JSON response that includes the necessary data along with meta-information (like the total number of records, filtered records, etc.).
+   - This JSON data will then be consumed by the client-side **jQuery DataTables** plugin, which renders the table and handles all the interactions, such as sorting, searching, and pagination.
+
+### Complete Flow:
+1. **Query Building**: `$users = User::select([...])` prepares a query to select data from the `users` table.
+2. **Data Conversion**: `DataTables::of($users)` takes this query and converts it into a format that can be processed by Yajra's DataTables.
+3. **Response Creation**: `->make(true)` executes the query, fetches the data, and packages it into a JSON response that is sent back to the client (front end).
+4. **Front-End Display**: jQuery DataTables on the front end receives the JSON data, displaying it in a dynamic, paginated, searchable, and sortable table.
+
+This approach is efficient for handling large datasets because only the necessary data is loaded based on what is required for the current page, and server-side processing (sorting, searching, and pagination) is handled by Laravel.
+---------------------------------------------------------------------------------------------
+ $(function() {
+       $('#users-table').DataTable({
+           processing: true,
+           serverSide: true,
+           ajax: '{{ route('your-route') }}',
+           columns: [
+               { data: 'id', name: 'id' },
+               { data: 'name', name: 'name' },
+               { data: 'email', name: 'email' },
+               { data: 'created_at', name: 'created_at' },
+               { data: 'updated_at', name: 'updated_at' }
+           ]
+       });
+   });
+The JavaScript code you provided is used to initialize a **jQuery DataTable** in a Laravel application with **server-side processing** enabled. This is part of the front-end code that interacts with the back-end (which in your case is using **Yajra DataTables** in Laravel). Here's a detailed explanation of each part:
+
+### 1. **`$(function() { ... });`**
+   - This is a shorthand for jQuery's `document.ready()` method. It ensures that the enclosed code is executed once the DOM (Document Object Model) is fully loaded, meaning that the HTML elements are ready for manipulation.
+   - In this case, the script will run as soon as the page is loaded and ready.
+
+### 2. **`$('#users-table').DataTable({...});`**
+   - This initializes a DataTable on the HTML table with the ID `users-table`.
+   - **`DataTable({...});`** is a method provided by the **jQuery DataTables** plugin to apply DataTables functionality (like pagination, searching, and sorting) to a given table.
+   - The argument inside `DataTable({...})` is a configuration object that defines how the table behaves.
+
+### 3. **`processing: true,`**
+   - **`processing: true`** adds a "processing" indicator (like a loading spinner) to the table while the data is being loaded or processed. This is useful for server-side processing to show users that the data is being fetched from the server.
+
+### 4. **`serverSide: true,`**
+   - **`serverSide: true`** enables server-side processing. This means that rather than loading all the data at once on the client side, the data will be loaded page by page from the server as needed. 
+   - This is essential for handling large datasets efficiently because only the required data for the current page is fetched from the server, and operations like filtering, sorting, and pagination are done on the server side.
+
+### 5. **`ajax: '{{ route('your-route') }}',`**
+   - **`ajax: '{{ route('your-route') }}'`** specifies the URL (or endpoint) from which the DataTable will fetch its data.
+   - The URL is generated using Laravel’s **`route()`** helper, which creates the correct URL for a named route in Laravel. This route will point to a Laravel controller action (usually the one that returns data in a format understood by DataTables, i.e., JSON).
+   - When DataTables needs to fetch data (e.g., when loading a page, sorting, or searching), it will send an AJAX request to this URL. The server will return the data in JSON format, and DataTables will handle the rendering on the client side.
+
+### 6. **`columns: [...]`**
+   - **`columns: [...]`** is an array that defines how each column in the DataTable should behave, specifically how data is fetched from the server and displayed in the table.
+
+   Each object inside the `columns` array defines a column's behavior:
+   
+   - **`{ data: 'id', name: 'id' }`**:
+     - **`data`**: Specifies the key in the JSON response that holds the data for this column. For example, the server will return data for the 'id' field, which will be displayed in this column.
+     - **`name`**: Specifies the name of the column, which is important for server-side operations like sorting and searching. This corresponds to the column name in the database or query used on the server.
+
+   The other column definitions are similar:
+   - `{ data: 'name', name: 'name' }`: Displays and manages the 'name' column.
+   - `{ data: 'email', name: 'email' }`: Displays and manages the 'email' column.
+   - `{ data: 'created_at', name: 'created_at' }`: Displays and manages the 'created_at' column (when the user was created).
+   - `{ data: 'updated_at', name: 'updated_at' }`: Displays and manages the 'updated_at' column (when the user's details were last updated).
+
+### Complete Flow:
+1. The JavaScript code runs after the page is loaded.
+2. It initializes a DataTable on the HTML element with the ID `#users-table`.
+3. **Server-side processing** is enabled, meaning that data for each page will be fetched from the server as needed via AJAX, rather than loading all data at once.
+4. The **`ajax`** option specifies the URL from where the data will be fetched. When the DataTable is initialized, or when the user interacts with it (e.g., by sorting or filtering), an AJAX request is sent to this URL.
+5. The server responds with data in JSON format, and the **columns** option maps the returned data to the table's columns.
+6. The table is rendered on the client side with the received data.
+
+This setup efficiently handles large datasets and ensures smooth user experience by offloading most data handling (searching, sorting, pagination) to the server.
