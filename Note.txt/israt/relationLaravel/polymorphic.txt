@@ -1,0 +1,322 @@
+In Laravel, a **polymorphic relationship** allows a model to belong to more than one other model on a single association. This is useful when a model can be related to multiple models using the same relationship.
+
+Here are five examples of polymorphic relationships with practical use cases in Laravel 11:
+
+---
+
+### 1. **Comments on Multiple Models (Posts and Videos)**
+A common example is having comments on both `posts` and `videos`. Instead of creating separate tables for each type of commentable entity, we use a polymorphic relationship.
+
+#### Migration: `posts` Table
+```php
+Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->text('body');
+    $table->timestamps();
+});
+```
+
+#### Migration: `videos` Table
+```php
+Schema::create('videos', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->string('url');
+    $table->timestamps();
+});
+```
+
+#### Migration: `comments` Table (Polymorphic)
+```php
+Schema::create('comments', function (Blueprint $table) {
+    $table->id();
+    $table->text('body');
+    $table->morphs('commentable'); // This will create commentable_id and commentable_type
+    $table->timestamps();
+});
+```
+
+#### Model Setup
+```php
+class Post extends Model
+{
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+}
+
+class Video extends Model
+{
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+}
+
+class Comment extends Model
+{
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
+}
+```
+
+#### Usage
+```php
+$post = Post::find(1);
+$post->comments()->create(['body' => 'Great post!']);
+
+$video = Video::find(1);
+$video->comments()->create(['body' => 'Nice video!']);
+```
+
+---
+
+### 2. **Tags on Multiple Models (Posts, Videos, and Products)**
+Tags can be applied to multiple types of content, such as `posts`, `videos`, and `products`.
+
+#### Migration: `tags` Table
+```php
+Schema::create('tags', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+```
+
+#### Migration: `taggables` Table (Polymorphic Pivot)
+```php
+Schema::create('taggables', function (Blueprint $table) {
+    $table->foreignId('tag_id')->constrained()->onDelete('cascade');
+    $table->morphs('taggable');
+});
+```
+
+#### Model Setup
+```php
+class Tag extends Model
+{
+    public function posts()
+    {
+        return $this->morphedByMany(Post::class, 'taggable');
+    }
+
+    public function videos()
+    {
+        return $this->morphedByMany(Video::class, 'taggable');
+    }
+
+    public function products()
+    {
+        return $this->morphedByMany(Product::class, 'taggable');
+    }
+}
+
+class Post extends Model
+{
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+}
+
+class Video extends Model
+{
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+}
+
+class Product extends Model
+{
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+}
+```
+
+#### Usage
+```php
+$post = Post::find(1);
+$post->tags()->attach($tagId);
+
+$video = Video::find(1);
+$video->tags()->attach($tagId);
+
+$product = Product::find(1);
+$product->tags()->attach($tagId);
+```
+
+---
+
+### 3. **Images for Multiple Models (Products and Users)**
+Images can be used for different models, like `products` and `users`, so you can store them in a polymorphic relationship.
+
+#### Migration: `images` Table
+```php
+Schema::create('images', function (Blueprint $table) {
+    $table->id();
+    $table->string('url');
+    $table->morphs('imageable'); // imageable_id and imageable_type
+    $table->timestamps();
+});
+```
+
+#### Model Setup
+```php
+class Image extends Model
+{
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
+}
+
+class Product extends Model
+{
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+}
+
+class User extends Model
+{
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+}
+```
+
+#### Usage
+```php
+$product = Product::find(1);
+$product->images()->create(['url' => 'image1.jpg']);
+
+$user = User::find(1);
+$user->images()->create(['url' => 'profile.jpg']);
+```
+
+---
+
+### 4. **Likes on Multiple Models (Posts and Comments)**
+A `like` can be associated with multiple entities like `posts` and `comments`.
+
+#### Migration: `likes` Table
+```php
+Schema::create('likes', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id')->constrained()->onDelete('cascade');
+    $table->morphs('likeable'); // likeable_id and likeable_type
+    $table->timestamps();
+});
+```
+
+#### Model Setup
+```php
+class Like extends Model
+{
+    public function likeable()
+    {
+        return $this->morphTo();
+    }
+}
+
+class Post extends Model
+{
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+}
+
+class Comment extends Model
+{
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+}
+```
+
+#### Usage
+```php
+$post = Post::find(1);
+$post->likes()->create(['user_id' => 1]);
+
+$comment = Comment::find(1);
+$comment->likes()->create(['user_id' => 1]);
+```
+
+---
+
+### 5. **Activity Logs for Multiple Models (Users, Orders, and Products)**
+An activity log can record actions performed on various models like `users`, `orders`, and `products`.
+
+#### Migration: `activity_logs` Table
+```php
+Schema::create('activity_logs', function (Blueprint $table) {
+    $table->id();
+    $table->string('description');
+    $table->morphs('loggable'); // loggable_id and loggable_type
+    $table->timestamps();
+});
+```
+
+#### Model Setup
+```php
+class ActivityLog extends Model
+{
+    public function loggable()
+    {
+        return $this->morphTo();
+    }
+}
+
+class User extends Model
+{
+    public function activityLogs()
+    {
+        return $this->morphMany(ActivityLog::class, 'loggable');
+    }
+}
+
+class Order extends Model
+{
+    public function activityLogs()
+    {
+        return $this->morphMany(ActivityLog::class, 'loggable');
+    }
+}
+
+class Product extends Model
+{
+    public function activityLogs()
+    {
+        return $this->morphMany(ActivityLog::class, 'loggable');
+    }
+}
+```
+
+#### Usage
+```php
+$user = User::find(1);
+$user->activityLogs()->create(['description' => 'User logged in']);
+
+$order = Order::find(1);
+$order->activityLogs()->create(['description' => 'Order created']);
+```
+
+---
+
+### Explanation of `morphs()`:
+- The `morphs()` method creates two fields: `*_id` and `*_type`. These fields are used to store the ID of the related model and its type.
+- In the `comments` example, `commentable_id` will store the ID of the post or video, and `commentable_type` will store the class name of the related model (`Post` or `Video`).
+
+These examples show how powerful and flexible polymorphic relationships can be in Laravel 11. They allow you to associate a model with multiple other models, eliminating the need to create multiple relationships or tables for each case.
