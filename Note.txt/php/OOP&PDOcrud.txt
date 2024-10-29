@@ -6,3 +6,13 @@ bootstrap.min.css	[link rel[relation]="stylesheet" href="inc/bootstrap.min.css" 
 bootstrap.min.js	[<script src="inc/bootstrap.min.js"></script>]
 jquery.min.js	[<script src="inc/jquery.min.js"></script>]
 link korbo
+---------------------------------------------------------------------------------------
+
+	Part-05
+Database connection:   [db connection set kora ache kina !isset means connection na thakle connection create korbe $this means $pdo connection na thakle try catch kore dorbo construct() er mage assin korbo]
+public function __construt(){
+if (!isset($this->pdo))
+}
+
+	part-06
+Read means database theke data read kore niye asbe.

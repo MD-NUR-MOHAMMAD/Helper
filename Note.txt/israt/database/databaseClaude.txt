@@ -1,0 +1,271 @@
+erDiagram
+    Users ||--o{ Orders : places
+    Users ||--o{ Addresses : has
+    Users ||--o{ Reviews : writes
+    Users ||--o{ Cart : has
+
+    Products ||--o{ OrderItems : contains
+    Products ||--o{ CartItems : contains
+    Products ||--o{ Reviews : receives
+    Products }|--|| Categories : belongs_to
+    Products }|--|| Inventory : has
+
+    Orders ||--|{ OrderItems : contains
+    Orders ||--|| PaymentTransactions : has
+    Orders ||--|| ShippingDetails : has
+
+    Cart ||--|{ CartItems : contains
+
+    Categories {
+        int category_id PK
+        string name
+        string description
+        int parent_category_id FK
+    }
+
+    Users {
+        int user_id PK
+        string email
+        string password_hash
+        string first_name
+        string last_name
+        datetime created_at
+    }
+
+    Products {
+        int product_id PK
+        string name
+        text description
+        decimal price
+        int category_id FK
+        datetime created_at
+    }
+
+    Orders {
+        int order_id PK
+        int user_id FK
+        decimal total_amount
+        string status
+        datetime order_date
+    }
+
+    OrderItems {
+        int order_item_id PK
+        int order_id FK
+        int product_id FK
+        int quantity
+        decimal unit_price
+    }
+
+    PaymentTransactions {
+        int payment_id PK
+        int order_id FK
+        decimal amount
+        string payment_method
+        string status
+        datetime payment_date
+    }
+
+    Inventory {
+        int inventory_id PK
+        int product_id FK
+        int quantity
+        string sku
+        datetime last_updated
+    }
+
+    Addresses {
+        int address_id PK
+        int user_id FK
+        string street
+        string city
+        string state
+        string postal_code
+        string country
+    }
+
+    Reviews {
+        int review_id PK
+        int user_id FK
+        int product_id FK
+        int rating
+        text comment
+        datetime created_at
+    }
+
+    Cart {
+        int cart_id PK
+        int user_id FK
+        datetime last_updated
+    }
+
+    CartItems {
+        int cart_item_id PK
+        int cart_id FK
+        int product_id FK
+        int quantity
+    }
+
+    ShippingDetails {
+        int shipping_id PK
+        int order_id FK
+        int address_id FK
+        string carrier
+        string tracking_number
+        datetime shipped_date
+    }
+--------------------------------------------------------------------------
+Let me create a basic database schema for an e-commerce system with essential tables. I'll focus on the core tables needed to handle products, customers, orders, and related functionality.
+
+
+
+```mermaid
+erDiagram
+    Users ||--o{ Orders : places
+    Users ||--o{ Addresses : has
+    Users ||--o{ Reviews : writes
+    Users ||--o{ Cart : has
+
+    Products ||--o{ OrderItems : contains
+    Products ||--o{ CartItems : contains
+    Products ||--o{ Reviews : receives
+    Products }|--|| Categories : belongs_to
+    Products }|--|| Inventory : has
+
+    Orders ||--|{ OrderItems : contains
+    Orders ||--|| PaymentTransactions : has
+    Orders ||--|| ShippingDetails : has
+
+    Cart ||--|{ CartItems : contains
+
+    Categories {
+        int category_id PK
+        string name
+        string description
+        int parent_category_id FK
+    }
+
+    Users {
+        int user_id PK
+        string email
+        string password_hash
+        string first_name
+        string last_name
+        datetime created_at
+    }
+
+    Products {
+        int product_id PK
+        string name
+        text description
+        decimal price
+        int category_id FK
+        datetime created_at
+    }
+
+    Orders {
+        int order_id PK
+        int user_id FK
+        decimal total_amount
+        string status
+        datetime order_date
+    }
+
+    OrderItems {
+        int order_item_id PK
+        int order_id FK
+        int product_id FK
+        int quantity
+        decimal unit_price
+    }
+
+    PaymentTransactions {
+        int payment_id PK
+        int order_id FK
+        decimal amount
+        string payment_method
+        string status
+        datetime payment_date
+    }
+
+    Inventory {
+        int inventory_id PK
+        int product_id FK
+        int quantity
+        string sku
+        datetime last_updated
+    }
+
+    Addresses {
+        int address_id PK
+        int user_id FK
+        string street
+        string city
+        string state
+        string postal_code
+        string country
+    }
+
+    Reviews {
+        int review_id PK
+        int user_id FK
+        int product_id FK
+        int rating
+        text comment
+        datetime created_at
+    }
+
+    Cart {
+        int cart_id PK
+        int user_id FK
+        datetime last_updated
+    }
+
+    CartItems {
+        int cart_item_id PK
+        int cart_id FK
+        int product_id FK
+        int quantity
+    }
+
+    ShippingDetails {
+        int shipping_id PK
+        int order_id FK
+        int address_id FK
+        string carrier
+        string tracking_number
+        datetime shipped_date
+    }
+
+```
+
+Here are the essential tables for an e-commerce database:
+
+1. Core User Management:
+   - Users: Stores customer information
+   - Addresses: Manages multiple addresses per user
+
+2. Product Management:
+   - Products: Main product information
+   - Categories: Product categorization
+   - Inventory: Stock management
+   - Reviews: Product reviews and ratings
+
+3. Order Processing:
+   - Orders: Main order information
+   - OrderItems: Individual items in each order
+   - PaymentTransactions: Payment records
+   - ShippingDetails: Shipping information
+
+4. Shopping Experience:
+   - Cart: Shopping cart header
+   - CartItems: Items in shopping cart
+
+This schema includes relationships like:
+- One user can have many orders
+- One order can have multiple items
+- Products belong to categories
+- Each user can have multiple addresses
+- Products can have multiple reviews
+
+Would you like me to explain any specific table or relationship in more detail?
