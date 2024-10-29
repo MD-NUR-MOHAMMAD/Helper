@@ -1,0 +1,42 @@
+graph TD
+    Start((Customer Visits)) --> Browse[Browse Products]
+    Browse --> Search[Search/Filter Products]
+    Search --> Browse
+    
+    Browse --> Cart[Add to Cart]
+    Cart --> Checkout[Proceed to Checkout]
+    
+    Checkout --> Guest{Guest or Register?}
+    Guest -->|Guest| ShippingInfo[Enter Shipping Info]
+    Guest -->|Register| Register[Create Account]
+    Register --> ShippingInfo
+    
+    ShippingInfo --> Payment[Payment Processing]
+    Payment -->|Success| OrderConfirm[Order Confirmation]
+    Payment -->|Failure| RetryPayment[Retry Payment]
+    RetryPayment --> Payment
+    
+    OrderConfirm --> System{System Processing}
+    
+    System --> Inventory[Update Inventory]
+    System --> Email[Send Confirmation Email]
+    System --> Admin[Notify Admin]
+    
+    Inventory --> Warehouse[Warehouse Processing]
+    Warehouse --> |In Stock| Packaging[Package Order]
+    Warehouse --> |Out of Stock| Backorder[Process Backorder]
+    
+    Packaging --> Shipping[Ship Order]
+    Shipping --> Track[Update Tracking]
+    Track --> Delivery[Deliver to Customer]
+    
+    Delivery --> Review{Customer Review}
+    Review -->|Happy| Feedback[Positive Feedback]
+    Review -->|Unhappy| Support[Customer Support]
+    
+    Support --> Resolution[Issue Resolution]
+    Resolution --> |Refund| RefundProcess[Process Refund]
+    Resolution --> |Replace| Warehouse
+    
+    Backorder --> Restock[Restock Items]
+    Restock --> Warehouse
