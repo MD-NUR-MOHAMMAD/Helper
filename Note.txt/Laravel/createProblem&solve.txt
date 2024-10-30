@@ -1,0 +1,31 @@
+problem:
+<tr>
+                     @forelse ($cruds as $crud)
+                    <td>{{$crud->id}}</td>
+                    <td>{{$crud->name}}</td>
+                    <td>{{$crud->email}}</td>
+                    <td>{{$crud->phone}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{url('crud/edit')}}?id=1">Edit</a>
+                        <a class="btn btn-danger" href="deletestudent.php?id=1"
+                            onclick="return confirm('Are you sure to Delete?')">Delete</a>
+                    </td>
+                    @empty
+                    <h3>no list found</h3>
+                @endforelse
+                </tr>
+Solve: [forelse run outside the <tr>]
+@forelse ($cruds as $crud)
+                <tr>
+                    <td>{{$crud->id}}</td>
+                    <td>{{$crud->name}}</td>
+                    <td>{{$crud->email}}</td>
+                    <td>{{$crud->phone}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{url('crud/edit')}}?id=1">Edit</a>
+                        <a class="btn btn-danger" href="deletestudent.php?id=1"
+                            onclick="return confirm('Are you sure to Delete?')">Delete</a>
+                    </td>
+                    @empty
+                    <h3>no list found</h3>
+                @endforelse
