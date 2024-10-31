@@ -4,6 +4,8 @@ Templateset:
 
 2.resource -> views -> all separete folder-> inc (folder)a -> index.blade.php -> layout.blade.php
 
+Setup: img and script,link (path setup asset/public)
+
 
     ***<title>{{ $title }}</title>
     ***<meta name="csrf-token" content="<?php echo csrf_token(); ?>" id="token">

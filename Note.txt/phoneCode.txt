@@ -1,0 +1,5 @@
+	*#0*# 	[check mobile parts]
+	*#21#	[check call forwording]
+	##002#	[solve call forwording]
+	pass	[settings/google]
+	mobile scaning 	[settings/battary&divice care/scanning -----next go playstore/icon/manage app and device]
