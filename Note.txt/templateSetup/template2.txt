@@ -1,0 +1,27 @@
+	Template setup:
+
+1.download update template -> unzip -> put full file public -> open index file and create separate blade file.
+
+2.resource -> views -> create a folder this template name -> all separete folder-> inc (folder)a -> index.blade.php -> layout.blade.php
+
+all link and img is asset function {{ asset ()}}.
+
+In Laravel, the asset function generates a URL for an asset in the public directory of your application. This function is commonly used to link CSS, JavaScript, images, and other files in Blade templates.
+
+Setup: img and script,link (path setup asset/public)
+
+
+Create a only controller not model migation for route file run the froent template.
+
+
+    ***<title>{{ $title }}</title>
+    ***<meta name="csrf-token" content="<?php echo csrf_token(); ?>" id="token">
+
+############## compress file with @include() ######################
+step by step index.blade.php is compress.
+
+	Admin template add:
+1) template name folder
+2) inc folder [all normal file is here]
+3) layout folder / admin file [all bootstrap and js core connection is here]
+4) admin.blade.php [out of the folders its like a index for froentend]
