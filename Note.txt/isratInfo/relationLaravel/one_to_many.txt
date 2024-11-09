@@ -1,0 +1,236 @@
+5 one to many relation in laravel 11
+
+In Laravel 11, **one-to-many relationships** are used when one model owns multiple instances of another model, but the other model only belongs to one instance of the first model. Here are five examples of **one-to-many relationships** with real-world scenarios:
+
+---
+
+### 1. **Category and Product**
+
+- A **category** can have many **products**, but each product belongs to one category.
+
+#### Migration:
+```php
+// Categories Table Migration
+Schema::create('categories', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+
+// Products Table Migration
+Schema::create('products', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('category_id')->constrained()->onDelete('cascade');
+    $table->string('name');
+    $table->decimal('price', 8, 2);
+    $table->timestamps();
+});
+```
+
+#### Models:
+```php
+// Category Model
+class Category extends Model
+{
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+}
+
+// Product Model
+class Product extends Model
+{
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+}
+```
+
+---
+
+### 2. **Author and Books**
+
+- An **author** can write many **books**, but each book is written by one author.
+
+#### Migration:
+```php
+// Authors Table Migration
+Schema::create('authors', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+
+// Books Table Migration
+Schema::create('books', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('author_id')->constrained()->onDelete('cascade');
+    $table->string('title');
+    $table->timestamps();
+});
+```
+
+#### Models:
+```php
+// Author Model
+class Author extends Model
+{
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
+}
+
+// Book Model
+class Book extends Model
+{
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
+    }
+}
+```
+
+---
+
+### 3. **Post and Comments**
+
+- A **post** can have many **comments**, but each comment belongs to one post.
+
+#### Migration:
+```php
+// Posts Table Migration
+Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->text('content');
+    $table->timestamps();
+});
+
+// Comments Table Migration
+Schema::create('comments', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('post_id')->constrained()->onDelete('cascade');
+    $table->text('comment');
+    $table->timestamps();
+});
+```
+
+#### Models:
+```php
+// Post Model
+class Post extends Model
+{
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+}
+
+// Comment Model
+class Comment extends Model
+{
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
+}
+```
+
+---
+
+### 4. **Company and Employees**
+
+- A **company** can have many **employees**, but each employee works for one company.
+
+#### Migration:
+```php
+// Companies Table Migration
+Schema::create('companies', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+
+// Employees Table Migration
+Schema::create('employees', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('company_id')->constrained()->onDelete('cascade');
+    $table->string('name');
+    $table->timestamps();
+});
+```
+
+#### Models:
+```php
+// Company Model
+class Company extends Model
+{
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+}
+
+// Employee Model
+class Employee extends Model
+{
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+}
+```
+
+---
+
+### 5. **Teacher and Students**
+
+- A **teacher** can have many **students**, but each student has only one teacher.
+
+#### Migration:
+```php
+// Teachers Table Migration
+Schema::create('teachers', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+
+// Students Table Migration
+Schema::create('students', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
+    $table->string('name');
+    $table->timestamps();
+});
+```
+
+#### Models:
+```php
+// Teacher Model
+class Teacher extends Model
+{
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+}
+
+// Student Model
+class Student extends Model
+{
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
+}
+```
+
+---
+
+### Summary:
+- In **one-to-many relationships**, the parent model uses `hasMany()` while the child model uses `belongsTo()`.
+- These relationships are useful for scenarios where one entity can be associated with many records in another entity (e.g., a company with many employees, a post with many comments).

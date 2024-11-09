@@ -1,0 +1,220 @@
+5 one to one relation:
+
+In Laravel 11, a **one-to-one relationship** is defined when a single record in one database table is associated with a single record in another table. Laravel’s Eloquent ORM makes defining these relationships easy. Below are five examples of one-to-one relationships using real-world scenarios in Laravel 11:
+
+### 1. **User and Profile**
+A user can have one profile, and a profile belongs to one user.
+
+#### Migration: 
+```php
+// Users Table Migration
+Schema::create('users', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->string('email')->unique();
+    $table->timestamps();
+});
+
+// Profiles Table Migration
+Schema::create('profiles', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id')->constrained()->onDelete('cascade');
+    $table->string('bio');
+    $table->timestamps();
+});
+```
+
+#### Models:
+```php
+// User Model
+class User extends Model
+{
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+}
+
+// Profile Model
+class Profile extends Model
+{
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
+```
+
+### 2. **Company and CEO**
+A company can have one CEO, and a CEO works for one company.
+
+#### Migration: 
+```php
+// Companies Table Migration
+Schema::create('companies', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+
+// CEOs Table Migration
+Schema::create('ceos', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('company_id')->constrained()->onDelete('cascade');
+    $table->string('name');
+    $table->timestamps();
+});
+```
+
+#### Models:
+```php
+// Company Model
+class Company extends Model
+{
+    public function ceo()
+    {
+        return $this->hasOne(Ceo::class);
+    }
+}
+
+// Ceo Model
+class Ceo extends Model
+{
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+}
+```
+
+### 3. **Car and Engine**
+A car can have one engine, and each engine belongs to one car.
+
+#### Migration: 
+```php
+// Cars Table Migration
+Schema::create('cars', function (Blueprint $table) {
+    $table->id();
+    $table->string('model');
+    $table->timestamps();
+});
+
+// Engines Table Migration
+Schema::create('engines', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('car_id')->constrained()->onDelete('cascade');
+    $table->string('type');
+    $table->timestamps();
+});
+```
+
+#### Models:
+```php
+// Car Model
+class Car extends Model
+{
+    public function engine()
+    {
+        return $this->hasOne(Engine::class);
+    }
+}
+
+// Engine Model
+class Engine extends Model
+{
+    public function car()
+    {
+        return $this->belongsTo(Car::class);
+    }
+}
+```
+
+### 4. **Phone and SIM Card**
+A phone can have one SIM card, and a SIM card belongs to one phone.
+
+#### Migration: 
+```php
+// Phones Table Migration
+Schema::create('phones', function (Blueprint $table) {
+    $table->id();
+    $table->string('model');
+    $table->timestamps();
+});
+
+// Sim Cards Table Migration
+Schema::create('sim_cards', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('phone_id')->constrained()->onDelete('cascade');
+    $table->string('number');
+    $table->timestamps();
+});
+```
+
+#### Models:
+```php
+// Phone Model
+class Phone extends Model
+{
+    public function simCard()
+    {
+        return $this->hasOne(SimCard::class);
+    }
+}
+
+// SimCard Model
+class SimCard extends Model
+{
+    public function phone()
+    {
+        return $this->belongsTo(Phone::class);
+    }
+}
+```
+
+### 5. **Author and Book**
+An author can have one published book, and a book is written by one author.
+
+#### Migration: 
+```php
+// Authors Table Migration
+Schema::create('authors', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+
+// Books Table Migration
+Schema::create('books', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('author_id')->constrained()->onDelete('cascade');
+    $table->string('title');
+    $table->timestamps();
+});
+```
+
+#### Models:
+```php
+// Author Model
+class Author extends Model
+{
+    public function book()
+    {
+        return $this->hasOne(Book::class);
+    }
+}
+
+// Book Model
+class Book extends Model
+{
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
+    }
+}
+```
+
+### Summary:
+- Each of these examples shows a **one-to-one** relationship between two tables.
+- The `hasOne()` method is used in the "parent" model, while the `belongsTo()` method is used in the "child" model.
+- Foreign keys in the "child" tables reference the "parent" table's primary keys to enforce this relationship.
+------------------------------------------------------------------------------------------------
