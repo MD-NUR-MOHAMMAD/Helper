@@ -1,0 +1,25 @@
+	Middleware:
+	---------------
+
+Application a user ke filter korar a way.
+
+Verifies the user authenticated. Not authenticated reditect 'login'. Is authenticated allow to proceed into the application.
+
+Lacated:	app\Http\Middleware
+
+ 		(1)
+	Defineign middleware:
+
+	php artisan make:middleware [middleware-name]
+		
+	[2 if condition and redirect]	
+
+		(2)
+	Registering Middleware:
+	-----------------------------
+	bootstrap/app.php  [alias and use short name]
+
+		(3)
+	web.php
+
+this is complete to middleware.
