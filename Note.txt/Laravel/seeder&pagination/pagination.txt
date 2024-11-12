@@ -1,0 +1,34 @@
+	Pagination:    [see the laravel site]
+
+
+Simple pagination:
+
+(1) controller 
+
+      
+       $allUser = User::paginate(4);
+       return view('user.index', ['users' => $allUser]);
+
+(2) View a ba index a 
+
+       {{ $users->links() }}    [under the loop or table]
+
+ Number pagination:
+
+ (1) controller 
+
+       $allUser = User::paginate(4);
+       return view('user.index', ['users' => $allUser]);
+
+ (2) App>Providers>AppServiceProvider.php
+ 
+use Illuminate\Pagination\Paginator;
+ 
+public function boot(): void
+{
+    Paginator::useBootstrapFive();
+}
+ 
+ (3) View a ba index a 
+      
+	{{ $users->onEachSide(5)->links() }}

@@ -1,0 +1,42 @@
+	Seeder:  [see the laravel site]
+
+database>seeders>UserSeeder [found this folder]
+
+ (1)  Run the code for seeder:
+
+	php artisan make:seeder UserSeeder
+
+<?php
+ 
+ 
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+ 
+    {
+        DB::table('users')->insert([
+            'name' => Str::random(10),
+            'email' => Str::random(10).'@example.com',
+            'password' => Hash::make('password'),
+        ]);
+    }
+
+*** this file must be same as table field which table data is insert ***
+
+ (2) DatabaseSeeder file a :
+
+/**
+ * Run the database seeders.
+ */
+public function run(): void
+{
+    $this->call([
+        UserSeeder::class,
+        PostSeeder::class,
+        CommentSeeder::class,
+    ]);
+}
+
+ (3) Run:
+	php artisan db:seed
