@@ -3,6 +3,8 @@
 
 Application a user ke filter korar a way.
 
+Offcourse user table a set/enum a role set kore nite hobe.
+
 Verifies the user authenticated. Not authenticated reditect 'login'. Is authenticated allow to proceed into the application.
 
 Lacated:	app\Http\Middleware

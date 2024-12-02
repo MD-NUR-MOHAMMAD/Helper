@@ -66,6 +66,15 @@ ajex means code diye valo patabo.
 
 	query builder:
 
+Query builder is so much easy just create [ a controller and a route ]
+controller:
+
+public function a :
+$users = DB::table('users')->count();
+dd($users);
+
+I find a many more data in many more table.
+
 when we create a query we can see one data is given is many time so solve the problem :
 distinct()
 

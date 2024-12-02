@@ -42,4 +42,11 @@ Command this lines:
 	git log --oneline   [commit check see]
 
 I want pull request so ckick pull requests  > New pull request > kuta theke kutay patabo > create pull request > comment > Create pull request> pull requests 1> request a click >merge pull request > pull request merge succesfully> check commit.
+
+	Israt: bikroy
+
+	git branch
+	git checkout nur [branch move]
+	git push origin main:nur [move main to nur]
+
 	
