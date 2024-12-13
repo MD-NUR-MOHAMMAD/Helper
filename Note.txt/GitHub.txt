@@ -40,13 +40,18 @@ Command this lines:
 	git push -u origin (BranchName)
 
 	git log --oneline   [commit check see]
-
-I want pull request so ckick pull requests  > New pull request > kuta theke kutay patabo > create pull request > comment > Create pull request> pull requests 1> request a click >merge pull request > pull request merge succesfully> check commit.
+	
+		PULL REQUEST:
+		----------------------
+I want pull request so ckick [ pull requests  > New pull request > kuta theke kutay patabo > create pull request > comment > Create pull request> pull requests 1> request a click >merge pull request > pull request merge succesfully> check commit.]
 
 	Israt: bikroy
 
 	git branch
-	git checkout nur [branch move]
+	git checkout nur [branch move] / git switch nur
+	
 	git push origin main:nur [move main to nur]
+	git push --set-upstream origin nur [push na hole ata diye or push korle je message dibe seta diye enter ]
+
 
 	

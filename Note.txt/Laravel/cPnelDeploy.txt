@@ -1,0 +1,5 @@
+	cPanel Deploy:
+
+step 1:	(file manager) zip this file-> upload cpnel-> upload .htaccess file -> env file a user database and password dibo
+step 2:	(Mysql database) Create database-> create user -> add user and database -> all privilise -> check it is correct
+step 3:	(phpMyadmin) select database and inport local database 
