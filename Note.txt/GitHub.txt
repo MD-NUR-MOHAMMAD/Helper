@@ -53,5 +53,9 @@ I want pull request so ckick [ pull requests  > New pull request > kuta theke ku
 	git push origin main:nur [move main to nur]
 	git push --set-upstream origin nur [push na hole ata diye or push korle je message dibe seta diye enter ]
 
+	git pull:
+	git pull origin dev 
+	git branch nur [ensure your branch]
+
 
 	
