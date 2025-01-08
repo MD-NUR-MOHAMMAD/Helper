@@ -1,0 +1,103 @@
+In WordPress, **hooks** are the foundation for extending and modifying the functionality of the platform. They allow you to "hook into" WordPress at specific points and run custom code. Hooks are divided into two main types: **actions** and **filters**.
+
+---
+
+### **1. Actions**
+**Actions** allow you to add custom functionality at specific points in the WordPress lifecycle without modifying core files.
+
+#### Syntax
+```php
+add_action( 'hook_name', 'your_custom_function', $priority, $accepted_args );
+```
+
+- `hook_name`: The specific hook where your function is executed.
+- `your_custom_function`: The function you want to run.
+- `$priority`: Optional, determines the order in which the functions execute (default is 10).
+- `$accepted_args`: Optional, specifies the number of arguments your function accepts (default is 1).
+
+#### Example: Adding Content to the Footer
+```php
+function my_custom_footer_text() {
+    echo '<p>This is custom footer text added using an action hook.</p>';
+}
+add_action( 'wp_footer', 'my_custom_footer_text' );
+```
+
+---
+
+### **2. Filters**
+**Filters** allow you to modify data before it is displayed or processed. They take input, modify it, and return the updated value.
+
+#### Syntax
+```php
+add_filter( 'hook_name', 'your_custom_function', $priority, $accepted_args );
+```
+
+- `hook_name`: The filter hook to modify data.
+- `your_custom_function`: The function that processes the data.
+- `$priority`: Optional, specifies the order (default is 10).
+- `$accepted_args`: Optional, number of arguments accepted (default is 1).
+
+#### Example: Modifying Post Titles
+```php
+function my_custom_post_title( $title ) {
+    return 'Custom: ' . $title;
+}
+add_filter( 'the_title', 'my_custom_post_title' );
+```
+This prepends "Custom: " to each post title.
+
+---
+
+### **Key Differences Between Actions and Filters**
+| Feature               | Actions                                | Filters                                |
+|-----------------------|-----------------------------------------|-----------------------------------------|
+| Purpose               | Execute custom code at specific points  | Modify and return data                  |
+| Return Value          | No return needed                        | Must return modified data               |
+| Usage Example         | Adding content to a page                | Changing the content of a post title    |
+
+---
+
+### **Common WordPress Hooks**
+| Hook Name          | Type    | Description                                           |
+|--------------------|---------|-------------------------------------------------------|
+| `init`             | Action  | Fires after WordPress is fully loaded.                |
+| `wp_enqueue_scripts` | Action  | Enqueues styles and scripts.                         |
+| `the_content`      | Filter  | Filters post content before output.                   |
+| `the_title`        | Filter  | Filters the title of the post.                        |
+
+---
+
+### **Creating Custom Hooks**
+You can also create your own hooks for other developers or themes to use.
+
+#### Custom Action
+```php
+do_action( 'my_custom_action' );
+
+function my_custom_action_handler() {
+    echo 'This is a custom action hook!';
+}
+add_action( 'my_custom_action', 'my_custom_action_handler' );
+```
+
+#### Custom Filter
+```php
+function apply_my_custom_filter( $text ) {
+    return apply_filters( 'my_custom_filter', $text );
+}
+
+function modify_text( $text ) {
+    return $text . ' - Modified!';
+}
+add_filter( 'my_custom_filter', 'modify_text' );
+```
+
+---
+
+### **Best Practices**
+1. **Prefix Function Names and Hook Names**: Avoid naming conflicts by using unique prefixes (`my_plugin_`).
+2. **Set Priority Thoughtfully**: Use priority to control the execution order.
+3. **Return Data in Filters**: Always return modified data in filters.
+
+Learning hooks is key to building robust, scalable plugins and themes. For detailed reference, consult the [WordPress Hook Reference](https://developer.wordpress.org/reference/hooks/).
