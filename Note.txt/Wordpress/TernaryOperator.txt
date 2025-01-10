@@ -1,0 +1,22 @@
+In the example you provided, the **ternary operator** is used to assign a value to `status` based on the value of `age`. Let’s break it down step-by-step:
+
+### Code
+```javascript
+let age = 16;
+let status = (age >= 18) ? "Adult" : "Minor";
+console.log(status);  // Output: "Minor"
+```
+
+### Explanation
+1. **Condition**: `(age >= 18)` — Checks if `age` is greater than or equal to 18.
+2. **True value**: `"Adult"` — This will be assigned if the condition is true.
+3. **False value**: `"Minor"` — This will be assigned if the condition is false.
+4. Since `age` is 16, the condition `(age >= 18)` evaluates to `false`, so `"Minor"` is assigned to `status`.
+5. `console.log(status)` prints `"Minor"` to the console.
+
+### Output
+```
+Minor
+``` 
+
+This is a classic use of the **ternary operator** for conditional assignments.

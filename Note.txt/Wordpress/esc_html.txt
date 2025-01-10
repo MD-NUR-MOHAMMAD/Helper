@@ -1,0 +1,32 @@
+In WordPress, `esc_html()` is a **sanitization function** used to escape data for safe output in HTML. It prevents security issues like **Cross-Site Scripting (XSS)** by ensuring that any potentially harmful characters in the string are converted into safe HTML entities before rendering.
+
+### Why Use `esc_html()`?
+When working with user-provided input or dynamic content in WordPress, you must sanitize and escape the data before displaying it on a webpage. This protects your site from security vulnerabilities.
+
+### Purpose in the Example
+```php
+return '<h2>' . esc_html($attributes['title']) . '</h2>';
+```
+In this line:
+- `$attributes['title']` comes from user input or shortcode attributes.
+- `esc_html($attributes['title'])` ensures that any special characters in the title are converted into safe HTML entities. For example:
+  - A dangerous input like `"<script>alert('Hacked!')</script>"` will be displayed as plain text instead of executing malicious JavaScript.
+  - `"<My Title>"` will be escaped to `"&lt;My Title&gt;"` to prevent issues in HTML rendering.
+
+### What Happens Without `esc_html()`
+If you simply output the value without escaping it:
+```php
+return '<h2>' . $attributes['title'] . '</h2>';
+```
+Any malicious code provided by an attacker can execute in the user's browser, leading to serious security issues.
+
+### Summary of Key Functions
+| Function | Purpose |
+|----------|---------|
+| `esc_html()` | Escapes content for safe output in HTML elements (excluding attributes). |
+| `esc_attr()` | Escapes content for safe use inside HTML attributes. |
+| `esc_url()` | Escapes URLs to prevent malicious links. |
+| `wp_kses()` | Allows only specific HTML tags and attributes. |
+
+### Conclusion
+You need `esc_html($attributes['title'])` to ensure that dynamic content in your shortcode is **safe, secure, and properly sanitized** before being displayed to users, maintaining WordPress security best practices.
