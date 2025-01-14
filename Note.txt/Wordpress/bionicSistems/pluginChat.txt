@@ -1,0 +1,138 @@
+<?php
+/**
+ * Plugin Name: Bionic Recruitment System
+ * Description: A custom recruitment system with frontend form and admin options page for managing applications.
+ * Version: 1.0
+ * Author: Your Name
+ */
+
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+// Define constants
+if (!defined('BIONIC_RECRUITMENT_TABLE')) {
+    global $wpdb;
+    define('BIONIC_RECRUITMENT_TABLE', $wpdb->prefix . 'bionic_recruitment');
+}
+
+// Activation hook to create custom table
+register_activation_hook(__FILE__, 'bionic_create_table');
+function bionic_create_table() {
+    global $wpdb;
+    $charset_collate = $wpdb->get_charset_collate();
+    
+    $sql = "CREATE TABLE " . BIONIC_RECRUITMENT_TABLE . " (
+        id BIGINT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        phone VARCHAR(20) NOT NULL,
+        about TEXT NOT NULL,
+        nid_number VARCHAR(100) NOT NULL,
+        certificate_number VARCHAR(100) NOT NULL,
+        cv_path VARCHAR(255) NOT NULL,
+        date_created DATETIME DEFAULT CURRENT_TIMESTAMP
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+}
+
+// Shortcode for multi-step form
+add_shortcode('bionic_recruitment_form', 'bionic_render_form');
+function bionic_render_form() {
+    ob_start();
+    ?>
+    <form id="bionic-form">
+        <div class="step step-1">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="phone">Phone</label>
+            <input type="text" name="phone" id="phone" required>
+
+            <label for="about">About</label>
+            <textarea name="about" id="about" required></textarea>
+
+            <button type="button" id="next-step">Next</button>
+        </div>
+        <div class="step step-2" style="display:none;">
+            <label for="nid_number">NID Number</label>
+            <input type="text" name="nid_number" id="nid_number" required>
+
+            <label for="certificate_number">Driver/Character Certificate Number</label>
+            <input type="text" name="certificate_number" id="certificate_number" required>
+
+            <label for="cv">Upload CV</label>
+            <input type="file" name="cv" id="cv" accept=".pdf,.jpg,.doc,.png" required>
+
+            <button type="button" id="prev-step">Previous</button>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <div id="form-messages"></div>
+    <?php
+    return ob_get_clean();
+}
+
+// Enqueue scripts and styles
+add_action('wp_enqueue_scripts', 'bionic_enqueue_scripts');
+function bionic_enqueue_scripts() {
+    wp_enqueue_style('bionic-style', plugin_dir_url(__FILE__) . 'style.css');
+    wp_enqueue_script('bionic-script', plugin_dir_url(__FILE__) . 'script.js', array('jquery'), null, true);
+    wp_localize_script('bionic-script', 'bionic_ajax', array('ajax_url' => admin_url('admin-ajax.php')));
+}
+
+// Handle form submission via AJAX
+add_action('wp_ajax_bionic_submit_form', 'bionic_handle_form_submission');
+add_action('wp_ajax_nopriv_bionic_submit_form', 'bionic_handle_form_submission');
+function bionic_handle_form_submission() {
+    check_ajax_referer('bionic_nonce', 'security');
+
+    global $wpdb;
+
+    $name = sanitize_text_field($_POST['name']);
+    $email = sanitize_email($_POST['email']);
+    $phone = sanitize_text_field($_POST['phone']);
+    $about = sanitize_textarea_field($_POST['about']);
+    $nid_number = sanitize_text_field($_POST['nid_number']);
+    $certificate_number = sanitize_text_field($_POST['certificate_number']);
+    $cv = $_FILES['cv'];
+
+    $allowed_types = ['application/pdf', 'image/jpeg', 'application/msword', 'image/png'];
+    if (!in_array($cv['type'], $allowed_types)) {
+        wp_send_json_error(['message' => 'Invalid file type.']);
+    }
+
+    $upload_dir = wp_upload_dir();
+    $cv_path = $upload_dir['path'] . '/' . basename($cv['name']);
+    move_uploaded_file($cv['tmp_name'], $cv_path);
+
+    $wpdb->insert(BIONIC_RECRUITMENT_TABLE, [
+        'name' => $name,
+        'email' => $email,
+        'phone' => $phone,
+        'about' => $about,
+        'nid_number' => $nid_number,
+        'certificate_number' => $certificate_number,
+        'cv_path' => $cv_path,
+    ]);
+
+    wp_send_json_success(['message' => 'Form submitted successfully.']);
+}
+
+// Admin menu and options page
+add_action('admin_menu', 'bionic_add_admin_menu');
+function bionic_add_admin_menu() {
+    add_menu_page('Bionic Recruitment', 'Bionic Recruitment', 'edit_pages', 'bionic-recruitment', 'bionic_render_admin_page', 'dashicons-businessman', 20);
+}
+
+function bionic_render_admin_page() {
+    // Implementation of WP_List_Table for viewing entries
+    echo '<h1>Bionic Recruitment Entries</h1>';
+    // Further implementation for listing and managing entries
+}
