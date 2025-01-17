@@ -1,0 +1,100 @@
+In **WordPress theme development**, the **template hierarchy** refers to the order in which WordPress searches for template files to display different types of content. This system allows themes to customize layouts for various pages, posts, and content types.
+
+Here’s an overview of the **WordPress template hierarchy**:
+
+### 1. **General Template File Structure**
+WordPress checks for the most specific template file first and falls back to more general templates. Below is the hierarchy from most specific to least specific for key page types:
+
+---
+
+#### **1.1 Front Page (Homepage)**
+- `front-page.php` (if set in reading settings)
+- `home.php` (used if front-page.php does not exist)
+- `index.php` (fallback)
+
+---
+
+#### **1.2 Single Post**
+- `single-{post-type}.php` (custom post types, e.g., `single-product.php`)
+- `single.php` (for blog posts)
+- `index.php` (fallback)
+
+---
+
+#### **1.3 Page**
+- `page-{slug}.php` (e.g., `page-about.php`)
+- `page-{ID}.php` (e.g., `page-10.php`)
+- `page.php`
+- `index.php` (fallback)
+
+---
+
+#### **1.4 Category**
+- `category-{slug}.php` (e.g., `category-news.php`)
+- `category-{ID}.php` (e.g., `category-5.php`)
+- `category.php`
+- `archive.php`
+- `index.php`
+
+---
+
+#### **1.5 Tag**
+- `tag-{slug}.php` (e.g., `tag-recipes.php`)
+- `tag-{ID}.php` (e.g., `tag-10.php`)
+- `tag.php`
+- `archive.php`
+- `index.php`
+
+---
+
+#### **1.6 Custom Taxonomies**
+- `taxonomy-{taxonomy}-{term}.php` (e.g., `taxonomy-genre-action.php`)
+- `taxonomy-{taxonomy}.php` (e.g., `taxonomy-genre.php`)
+- `archive.php`
+- `index.php`
+
+---
+
+#### **1.7 Author**
+- `author-{nicename}.php` (e.g., `author-johndoe.php`)
+- `author-{ID}.php` (e.g., `author-3.php`)
+- `author.php`
+- `archive.php`
+- `index.php`
+
+---
+
+#### **1.8 Date Archive**
+- `date.php`
+- `archive.php`
+- `index.php`
+
+---
+
+#### **1.9 Search Results**
+- `search.php`
+- `index.php`
+
+---
+
+#### **1.10 404 Error Page**
+- `404.php`
+- `index.php`
+
+---
+
+### Visual Template Hierarchy (Example)
+```
+                      index.php
+                         |
+             ------------------------
+             |                      |
+        front-page.php          home.php
+             |
+        single.php
+         /     \
+single-{post-type}.php  
+```
+
+### Summary
+Each request in WordPress follows a **logical path through this hierarchy** to find the most specific template file. If none is found, it defaults to `index.php`. Understanding this structure helps theme developers customize content efficiently.
