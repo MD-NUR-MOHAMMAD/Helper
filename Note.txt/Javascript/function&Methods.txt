@@ -1,0 +1,46 @@
+In programming, especially in languages like JavaScript, **functions** and **methods** are often used interchangeably, but they have distinct meanings based on context. Here's the difference:
+
+### 1. **Function**
+A **function** is a block of reusable code that performs a specific task. It can be defined independently and invoked anywhere in the code. Functions can take arguments and return values.
+
+**Example of a Function:**
+```javascript
+function greet(name) {
+  return "Hello, " + name + "!";
+}
+console.log(greet("Alice")); // Output: Hello, Alice!
+```
+
+**Characteristics of Functions:**
+- Defined using the `function` keyword or arrow function syntax (`()=>`).
+- Can exist independently of objects.
+- Called by its name.
+
+### 2. **Method**
+A **method** is a function that is associated with an object or class. It is a property of an object that holds a function definition.
+
+**Example of a Method:**
+```javascript
+const person = {
+  name: "Bob",
+  greet: function() {
+    return "Hello, " + this.name + "!";
+  }
+};
+console.log(person.greet()); // Output: Hello, Bob!
+```
+
+**Characteristics of Methods:**
+- A method is a function stored as a property of an object.
+- Uses the `this` keyword to refer to the object it belongs to.
+- Called using the object reference, e.g., `object.method()`.
+
+### Key Differences
+| Feature               | Function                            | Method                               |
+|-----------------------|--------------------------------------|---------------------------------------|
+| **Association**       | Independent, not tied to an object   | Associated with an object or class    |
+| **Call Syntax**       | `functionName()`                     | `objectName.methodName()`             |
+| **Use of `this`**     | Usually does not use `this`          | Uses `this` to refer to the object    |
+| **Example**           | `greet()`                            | `person.greet()`                      |
+
+In summary, **all methods are functions**, but not all functions are methods. The key difference is whether the function is associated with an object.

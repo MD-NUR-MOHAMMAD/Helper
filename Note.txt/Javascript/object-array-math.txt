@@ -1,0 +1,81 @@
+In JavaScript, **Object**, **Array**, **String**, and **Math** are built-in global objects that provide useful properties and methods for working with data. Here’s a breakdown of each:
+
+### 1. **Object**
+The `Object` type represents a collection of key-value pairs.
+
+**Example:**
+```javascript
+const person = {
+  name: "John",
+  age: 30
+};
+```
+
+**Common Methods:**
+| Method | Description |
+|--------|-------------|
+| `Object.keys(obj)` | Returns an array of a given object's keys. |
+| `Object.values(obj)` | Returns an array of values of an object’s properties. |
+| `Object.entries(obj)` | Returns an array of key-value pairs. |
+| `Object.assign(target, source)` | Copies properties from one object to another. |
+
+---
+
+### 2. **Array**
+The `Array` object represents an ordered collection of elements.
+
+**Example:**
+```javascript
+const fruits = ["apple", "banana", "cherry"];
+```
+
+**Common Methods:**
+| Method | Description |
+|--------|-------------|
+| `push(item)` | Adds an element to the end of the array. |
+| `pop()` | Removes the last element of the array. |
+| `shift()` | Removes the first element of the array. |
+| `unshift(item)` | Adds an element to the beginning of the array. |
+| `map(callback)` | Creates a new array with the result of calling a function on each element. |
+| `filter(callback)` | Returns a new array with elements that satisfy the condition. |
+
+---
+
+### 3. **String**
+The `String` object is used to represent and manipulate text.
+
+**Example:**
+```javascript
+const message = "Hello, World!";
+```
+
+**Common Methods:**
+| Method | Description |
+|--------|-------------|
+| `charAt(index)` | Returns the character at the specified index. |
+| `concat(str)` | Concatenates strings. |
+| `toUpperCase()` | Converts the string to uppercase. |
+| `toLowerCase()` | Converts the string to lowercase. |
+| `split(separator)` | Splits the string into an array of substrings. |
+| `trim()` | Removes whitespace from both sides of a string. |
+
+---
+
+### 4. **Math**
+The `Math` object provides mathematical constants and functions.
+
+**Example:**
+```javascript
+let result = Math.sqrt(16); // Returns 4
+```
+
+**Common Methods:**
+| Method | Description |
+|--------|-------------|
+| `Math.min(a, b, c)` | Returns the smallest of zero or more numbers. |
+| `Math.max(a, b, c)` | Returns the largest of zero or more numbers. |
+| `Math.random()` | Returns a random number between 0 and 1. |
+| `Math.floor(num)` | Rounds a number down to the nearest integer. |
+| `Math.ceil(num)` | Rounds a number up to the nearest integer. |
+
+These built-in objects make working with data easier and provide essential functionality out of the box.
