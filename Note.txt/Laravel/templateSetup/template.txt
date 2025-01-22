@@ -5,7 +5,7 @@
 
 1.download -> unzip -> put full file public -> open index file and create separate blade file.
 
-2.resource -> views -> all separete folder-> inc (folder)a -> index.blade.php (file) -> layout.blade.php (file) .
+2.resource -> views -> all separete folder-> inc (folder)a -> index.blade.php (file for load) -> layout.blade.php (common files ) .
 
 
     ***format document (do not break structure)
@@ -19,7 +19,10 @@
 ############## compress file with @include() ######################
 step by step index.blade.php is compress.
 
+3.controlar
+4.route
 ---------------------------------------------------------------------------------------------------------------------
+example:
 
                   imporant:
                   ----------
@@ -44,6 +47,10 @@ index.blade.php :
 
 @endsection
 
+@section('script')
+
+
+@endsection
 
 
 layout.blade.php:
