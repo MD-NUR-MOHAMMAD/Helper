@@ -1,0 +1,5 @@
+1. All page reload.
+2. Repost print sales voucher is out of design.
+3. sale voucher editing QNTY
+4. New Sales Information empty submit.
+5. 
