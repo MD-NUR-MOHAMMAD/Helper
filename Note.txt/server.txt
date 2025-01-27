@@ -1,28 +1,6 @@
-site: coders24x7.com:2083
-user: codersxc
-pwd: kY8x5JLJq2+b*5
+logicetech.com/cPanel:
 
 
-
-
-FTP Username: onik@coders24x7.com
-FTP server: ftp.coders24x7.com
-FTP & explicit FTPS port:  21
-ftp tt2kXj]DEzgZ
-
-
-
-SSH Pass: 2TpiO(@#f)f]
-
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxokfxyJGz77W92K8bDYUSL8zak5P3Ru/oq9YP8cW12BmGc9i31ilW0IYAe+hu/HV/iIKDw0U6WZmFcUCiSmGREMzZfZ8QUmQ2Zzvj+erkTglmeSKmFaQn4oVo21w/cScA4GWWvEGtvssKP8PTfjgeujAM8I0911V/DmgM+Q+JDjp9XhW55E4fGZe7mR2Yh0K1+4oPLwUU2KJW/6TJHETA6jbWyxNX6mOsrE17DAbGA7FCQfiSt37irba717cqr/3uyeD11OLjQGACWAmO+mPzAOTi2bvi3aKDZxxYFEaHzazItV9WOiBkHFUcI51emDR58Ufcb43lXOfLdOf0UKBz
-
-
-https://coders24x7.com/apartment/
-codersxc_housing_society
-eiZs4hj2xu2YTEu
-
-
-
-db codersxc_wordpress
-pass (@Abcd1234#)
-user codersxc_wordpress
+https://logicetech.com:2083/
+UserName: logicete
+Password: oP0ihu60W2
