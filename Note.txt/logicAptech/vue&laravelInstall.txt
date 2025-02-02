@@ -1,0 +1,13 @@
+first a laravel project install.
+
+next
+
+composer requir laravel/ui
+php artisan ui vue
+npm install
+npm run dev
+
+
+for router:
+npm install vue-router
+npm install --save-dev vite
