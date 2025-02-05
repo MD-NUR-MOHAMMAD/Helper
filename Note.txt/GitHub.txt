@@ -61,5 +61,17 @@ I want pull request so ckick [ pull requests  > New pull request > kuta theke ku
 
 
 
+		New Gitset up :
+		---------------
+	search: git download [all setup complete]
+
+		
+	git bash:
+	$ git config --global user.name "MD-NUR-MOHAMMAD"
+	$ git config --global user.email "nurmohammad20161994@gmail.com"
+
+
+
+
 
 	

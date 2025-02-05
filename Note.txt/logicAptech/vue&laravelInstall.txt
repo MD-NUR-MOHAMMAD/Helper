@@ -1,4 +1,15 @@
+	Laravel and vue setup:
+	
+	With laravel installation:
+1. site theke run install
+2. vue [innertia]
+3. ssr [server side rendering]
+4. 
+
+
+	Seperate setup:
 first a laravel project install.
+
 
 next
 
