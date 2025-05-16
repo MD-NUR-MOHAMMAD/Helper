@@ -1,0 +1,227 @@
+JavaScript has many **built-in functions**, and you can create your own **custom functions**. If you're asking for **all JavaScript functions**, it's important to clarify that JavaScript has:
+
+1. **Global functions**
+2. **Object methods**
+3. **Standard library functions (Math, String, Array, etc.)**
+4. **User-defined functions**
+
+Here’s a categorized list of the **most commonly used JavaScript built-in functions and methods**.
+
+---
+
+### ✅ 1. Global Functions
+
+These are built-in functions available anywhere.
+
+```js
+eval()
+isFinite()
+isNaN()
+parseFloat()
+parseInt()
+decodeURI()
+decodeURIComponent()
+encodeURI()
+encodeURIComponent()
+```
+
+---
+
+### ✅ 2. Console Functions
+
+Used for debugging:
+
+```js
+console.log()
+console.error()
+console.warn()
+console.info()
+console.table()
+```
+
+---
+
+### ✅ 3. String Methods
+
+```js
+String.length
+charAt()
+charCodeAt()
+concat()
+includes()
+indexOf()
+lastIndexOf()
+match()
+replace()
+search()
+slice()
+split()
+substr()
+substring()
+toLowerCase()
+toUpperCase()
+trim()
+```
+
+---
+
+### ✅ 4. Array Methods
+
+```js
+Array.length
+push()
+pop()
+shift()
+unshift()
+concat()
+join()
+slice()
+splice()
+forEach()
+map()
+filter()
+reduce()
+reduceRight()
+find()
+findIndex()
+includes()
+indexOf()
+sort()
+reverse()
+every()
+some()
+flat()
+flatMap()
+```
+
+---
+
+### ✅ 5. Number & Math Functions
+
+```js
+Number()
+parseInt()
+parseFloat()
+isNaN()
+toFixed()
+toPrecision()
+
+Math.abs()
+Math.ceil()
+Math.floor()
+Math.round()
+Math.max()
+Math.min()
+Math.pow()
+Math.random()
+Math.sqrt()
+Math.trunc()
+```
+
+---
+
+### ✅ 6. Date Functions
+
+```js
+Date.now()
+Date.parse()
+Date.UTC()
+new Date()
+getDate()
+getDay()
+getFullYear()
+getHours()
+getMilliseconds()
+getMinutes()
+getMonth()
+getSeconds()
+getTime()
+setDate()
+setFullYear()
+setHours()
+setMilliseconds()
+setMinutes()
+setMonth()
+setSeconds()
+setTime()
+toDateString()
+toISOString()
+toJSON()
+toLocaleDateString()
+toLocaleString()
+toTimeString()
+```
+
+---
+
+### ✅ 7. JSON Functions
+
+```js
+JSON.parse()
+JSON.stringify()
+```
+
+---
+
+### ✅ 8. Function Methods
+
+```js
+function()
+call()
+apply()
+bind()
+```
+
+---
+
+### ✅ 9. Object Methods
+
+```js
+Object.keys()
+Object.values()
+Object.entries()
+Object.assign()
+Object.create()
+Object.defineProperty()
+Object.freeze()
+Object.seal()
+Object.hasOwnProperty()
+```
+
+---
+
+### ✅ 10. Browser-Related (DOM Functions)
+
+```js
+document.getElementById()
+document.querySelector()
+document.querySelectorAll()
+document.createElement()
+document.appendChild()
+element.innerHTML
+element.setAttribute()
+element.addEventListener()
+window.alert()
+window.confirm()
+window.prompt()
+setTimeout()
+setInterval()
+clearTimeout()
+clearInterval()
+```
+
+---
+
+### ➕ User-Defined Functions
+
+You can create your own like this:
+
+```js
+function greet(name) {
+  return "Hello, " + name;
+}
+```
+
+---
+
+Do you want this in **a downloadable file** or grouped for **learning/study** purposes? I can also give you **examples** for each group.
