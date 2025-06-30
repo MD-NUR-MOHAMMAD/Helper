@@ -5,8 +5,15 @@ SEO hoy 3 jaygay :
 3) Tag
 
 
-Title: Is very important 
+Title: Is very important  (more title | this sign)
 1) vidIQ
 2) tubeburry
 3) ChatGPT
 4) Own brain
+
+Description: copy title and paste
+some related description from chatGPT
+
+Tag: title , more title and IQ check
+vidIQ, tubeburry, compititor tags,  
+https://rapidtags.io/generator
