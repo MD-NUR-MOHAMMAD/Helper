@@ -1,0 +1,47 @@
+Localhost:
+1) install xampp 
+2) install wordpress rename and create a database
+3) Browser a giye wordpress [need info diye run korle backend dashboard a jabe] jata diye sigin up korbe seta admin
+4) Search Engine Visibility [on going tik mark thakbe submit korar somoy ata utiye dite hobe]
+----------------------------------------------------------------------------------------------------------------------
+site edit:
+1) wp-admin a screen option empty korbo
+2) plugins delete 2ta
+3) post delete 
+4) page delete 
+5) theme delete
+
+setting:  a parmalink [post name]
+	General [as my wish]
+
+
+BlankTheme : practise ar jonno theme
+	     1) hello elementor
+	     2) astra [astra cleint ar kaje besi use hoy ]
+
+Plugin:      1) elemenor page builder
+	2) cocoblock [function ar jonno]
+
+----------------------------------------------------------------------------------------------------------------------
+Free domain hosting:
+https://pantheon.io/
+
+1) man icon  a click
+2) google diye continue [nurmohammad7338@mail.com]
+3) create new site
+4) wordpress [Name Your Pantheon Site uniqe hote hobe then processing]
+5) site admin > continue > normal wordpress
+
+--------------------------------------------------------------------------------------------------------------------
+Summry:
+wordpress install local and pantheon.io
+theme: astra and hello elementor
+plugin: elemenor page builder
+
+
+
+https://dev-nur-fsd.pantheonsite.io/
+
+
+
+
