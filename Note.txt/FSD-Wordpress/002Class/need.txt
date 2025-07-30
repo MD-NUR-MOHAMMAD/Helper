@@ -1,2 +1,9 @@
 Wordpress overview:
-Dashboard = home
+----------------------------
+
+Dashboard = home 
+update means = backup [wordpress plugin theme] সর্বপ্রথম পুরো সাইটের Backup নিন (ফাইল + ডাটাবেস)
+
+আপডেটের আগে Changelog দেখে নিন – কী নতুন ফিচার বা bug fix এসেছে
+
+আপডেট করার পরে সাইটের সকল পেজ ঠিকমতো কাজ করছে কিনা চেক করুন
