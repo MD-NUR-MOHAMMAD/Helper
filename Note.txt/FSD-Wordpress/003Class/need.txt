@@ -1,1 +1,2 @@
 Old kono website update korte hole  = Elementor>setting>Features>container [default or active thakte hoy] normaly inactive thake
+New site korar somoy  = Elementor>tools>maintainance mode> maintaince or comming soon kore rakbo
