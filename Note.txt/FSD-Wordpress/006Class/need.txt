@@ -18,6 +18,9 @@ sob design hole pore responsive ok korbo
 cart and classic posts :
 defult design
 
+Custom font add:
+download or zip file -> http://transfonter.org/ -> add font , upfile and click all , convert , download and unzip -> go wordpress elementor -> custom font -> add file and all up -> page refresh and get custom font.
+
 
  
  
