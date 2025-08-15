@@ -19,10 +19,13 @@ cart and classic posts :
 defult design
 
 Custom font add:
+
 download or zip file / https://www.dafont.com/ -> http://transfonter.org/ -> add font , upfile and click all , convert , download and unzip -> go wordpress elementor -> custom font -> add file and all up -> page refresh and get custom font.
 
 
- 
+ Custom icon add:
+
+https://www.flaticon.com/ ->
  
 
 
